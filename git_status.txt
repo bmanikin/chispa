@@ -1,0 +1,32 @@
+On branch main
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .DS_Store
+	modified:   static/.DS_Store
+	modified:   static/app.js
+	modified:   static/checkout.html
+	modified:   static/images/.DS_Store
+	deleted:    static/images/galeria/copia_de_dsc00087.webp
+	deleted:    static/images/galeria/copia_de_dsc00115.webp
+	deleted:    static/images/galeria/img-20260603.webp
+	deleted:    static/images/galeria/img_8571.webp
+	deleted:    static/images/galeria/img_8579.webp
+	modified:   static/index.html
+	modified:   static/styles.css
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_status.txt
+	static/images/galeria/.DS_Store
+	static/images/galeria/galeria 8.jpg
+	static/images/galeria/galeria1.jpg
+	static/images/galeria/galeria10.jpg
+	static/images/galeria/galeria11.jpg
+	static/images/galeria/galeria2.jpg
+	static/images/galeria/galeria3.jpg
+	static/images/galeria/galeria4.jpg
+	static/images/galeria/galeria5.jpg
+	static/images/galeria/galeria6.jpg
+
+no changes added to commit (use "git add" and/or "git commit -a")
