@@ -6,3 +6,6 @@ github_api.txt
 *.log
 .DS_Store
 Thumbs.db
+.vercel
+Verticales/
+Horizontales/

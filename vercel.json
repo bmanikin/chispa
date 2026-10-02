@@ -1,11 +1,43 @@
 {
+  "name": "chispa",
   "version": 2,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" },
-    { "source": "/static/(.*)", "destination": "/static/$1" },
-    { "source": "/", "destination": "/static/index.html" },
-    { "source": "/(.*)\\.html", "destination": "/static/$1.html" },
-    { "source": "/:path", "destination": "/static/:path.html" },
-    { "source": "/(.*)", "destination": "/api/index.py" }
-  ]
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    },
+    {
+      "source": "/static/(.*)",
+      "destination": "/static/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/static/index.html"
+    },
+    {
+      "source": "/(.*)\\.html",
+      "destination": "/static/$1.html"
+    },
+    {
+      "source": "/:path",
+      "destination": "/static/:path.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "web"
+      }
+    }
+  ],
+  "services": {
+    "web": {
+      "root": ".",
+      "entrypoint": "app.py"
+    }
+  }
 }
