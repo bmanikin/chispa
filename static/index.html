@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Chispa Experience | Productividad y Diversión</title>
-    <link rel="stylesheet" href="/static/styles.css?v=3">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css?v=17">
 </head>
 <body>
     <header>
         <div class="container header-inner" style="justify-content: space-between;">
             <div class="header-left" style="gap: 2.5rem;">
-                <a href="/checkout.html" style="text-transform: none;">Membresías</a>
+                <a href="/checkout.html" style="text-transform: none;">Membresía / Co-working</a>
                 <a href="/fiestas.html" style="text-transform: none;">Party Center</a>
             </div>
             <a href="/" class="logo">
@@ -20,76 +22,45 @@
             <div class="header-right" style="gap: 2.5rem;">
                 <a href="/contacto.html" style="text-transform: none;">Contacto</a>
                 <a href="/cafeteria.html" style="text-transform: none;">Cafetería</a>
-                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Mi Cuenta" style="display:inline-flex;align-items:center;color:var(--dark-color);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
             </div>
         </div>
     </header>
 
     <div id="planModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-content" style="max-width: 440px;">
             <span class="close-modal" onclick="closePlanModal()">&times;</span>
-            <h3 style="color: var(--secondary-color); font-family: var(--font-title); text-transform: uppercase;">Checkout</h3>
-            <h2 id="modalPlanName" style="color: var(--primary-color); margin-bottom: 0.5rem;">[Nombre del Plan]</h2>
-            <p id="modalPlanPrice" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem; color: var(--dark-color);">$0.00 MXN</p>
-            
-            <div id="modalPlanSummary" style="text-align: left; margin-bottom: 1.5rem; background: #f9f9f9; padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
-                <div id="modalPlanDetails" style="margin-bottom: 1rem; color: #555;"></div>
-                <p style="font-weight: bold; margin-bottom: 0.5rem; color: #333;">Beneficios incluidos:</p>
+            <h3 style="color: var(--secondary-color); font-family: var(--font-title); text-transform: uppercase; margin-bottom: 0.2rem;">Plan Seleccionado</h3>
+            <h2 id="modalPlanName" style="color: var(--primary-color); margin-bottom: 0.3rem;">[Nombre del Plan]</h2>
+            <p id="modalPlanPrice" style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1rem; color: var(--dark-color);">$0.00 MXN</p>
+
+            <div id="modalPlanSummary" style="text-align: left; margin-bottom: 1.4rem; background: #f9f9f9; padding: 0.9rem 1rem; border-radius: 10px; font-size: 0.88rem;">
+                <p style="font-weight: 700; margin-bottom: 0.5rem; color: #333;">Beneficios incluidos:</p>
                 <ul class="plan-features" style="margin-bottom: 0;"></ul>
             </div>
-            
-            <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 1.5rem;">
-            <h4 style="text-align: left; margin-bottom: 1rem;">Datos de Contacto</h4>
-            
-            <form id="planForm" onsubmit="processPayment(event)">
-                <div style="margin-bottom: 1rem; text-align: left;">
-                    <label for="userName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--dark-color); font-size: 0.9rem;">Nombre completo:</label>
-                    <input type="text" id="userName" required style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
-                </div>
-                <div style="margin-bottom: 1.5rem; text-align: left;">
-                    <label for="userEmail" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--dark-color); font-size: 0.9rem;">Correo electrónico:</label>
-                    <input type="email" id="userEmail" required style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
-                </div>
-                
-                <h4 style="text-align: left; margin-bottom: 1rem;">Método de Pago <i class="fab fa-cc-visa" style="color: #1a1f71;"></i> <i class="fab fa-cc-mastercard" style="color: #eb001b;"></i></h4>
-                
-                <div style="margin-bottom: 1rem; text-align: left;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--dark-color); font-size: 0.9rem;">Número de tarjeta:</label>
-                    <input type="text" placeholder="0000 0000 0000 0000" required style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
-                </div>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; text-align: left;">
-                    <div style="flex: 1;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--dark-color); font-size: 0.9rem;">Vencimiento:</label>
-                        <input type="text" placeholder="MM/YY" required style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--dark-color); font-size: 0.9rem;">CVC:</label>
-                        <input type="text" placeholder="123" required style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
-                    </div>
-                </div>
-                
-                <button type="submit" id="payButton" class="btn-primary w-100" style="display: flex; align-items: center; justify-content: center; gap: 10px; border: none; font-size: 1.1rem; padding: 1rem;">
-                    <i class="fas fa-lock"></i> Pagar Seguro
-                </button>
-            </form>
-            
-            <div id="paymentSuccess" style="display: none; text-align: center; padding: 2rem 0;">
-                <i class="fas fa-check-circle" style="color: #25D366; font-size: 4rem; margin-bottom: 1rem;"></i>
-                <h3>¡Pago Exitoso!</h3>
-                <p style="color: #666; margin-top: 0.5rem;">Hemos enviado tu recibo por correo. ¡Te esperamos en Chispa Experience!</p>
-            </div>
+
+            <a id="whatsappModalBtn" href="#" target="_blank"
+               style="display: flex; align-items: center; justify-content: center; gap: 10px;
+                      background: #25D366; color: white; font-weight: 700; font-size: 1.05rem;
+                      padding: 0.9rem 1rem; border-radius: 50px; text-decoration: none;
+                      transition: background 0.2s;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg> Contactar por WhatsApp
+            </a>
+            <p style="font-size: 0.78rem; color: #aaa; text-align: center; margin-top: 0.6rem;">
+                Te responderemos para confirmar tu reservación
+            </p>
         </div>
     </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/525587989223" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg>
     </a>
 
     <!-- 1. Hero Section (Orgánico y Divertido con Galería) -->
     <section class="hero" style="background-color: var(--beige-bg); position: relative; overflow: hidden; padding: 3rem 0;">
         <!-- Elemento de fondo amarillo suave detrás del título -->
-        <div style="position: absolute; top: -50px; left: 10%; width: 300px; height: 200px; background-color: rgba(201, 186, 144, 0.2); border-radius: 50% 30% 70% 40%; z-index: 1;"></div>
+        <div style="position: absolute; top: -50px; left: 10%; width: 300px; height: 200px; background-color: rgba(201, 186, 144, 0.15); border-radius: 50% 30% 70% 40%; z-index: 1;"></div>
         
         <div class="container" style="position: relative; z-index: 2;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
@@ -97,30 +68,41 @@
                 <!-- Left Side: Texts -->
                 <div style="display: flex; flex-direction: column; gap: 1.5rem; padding-left: 0; text-align: center; align-items: center;">
                     <div>
-                        <h1 style="font-family: var(--font-title); font-size: 3.4rem; color: var(--secondary-color); line-height: 1.2; margin: 0; font-weight: 400;">
+                        <h1 style="font-family: var(--font-title); font-size: 3.4rem; color: var(--primary-color); line-height: 1.2; margin: 0; font-weight: 500;">
                             Un espacio donde <br>
-                            <span class="marker-highlight" id="dynamic-word">productividad</span> <br>
+                            <span class="marker-highlight" id="dynamic-word">diversión</span> <br>
                             y bienestar familiar <br>
                             se encuentran
                         </h1>
                     </div>
                     <div>
-                        <p style="font-size: 1.15rem; line-height: 1.6; color: #4A4A4A; font-weight: 400; margin-top: 1rem; max-width: 90%;">
+                        <p style="font-size: 1.15rem; line-height: 1.6; color: var(--dark-color); font-weight: 500; margin-top: 1rem; max-width: 90%;">
                             ¡Transforma tus días de trabajo y celebraciones infantiles en experiencias inolvidables!
                         </p>
                     </div>
                     <div style="margin-top: 0.5rem;">
-                        <a href="#membresias-banner" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; box-shadow: 0 4px 15px rgba(212, 121, 107, 0.4);">Ver Pases</a>
+                        <a href="#membresias-banner" class="btn-primary" style="font-size: 0.9rem; padding: 1rem 2.6rem;">Ver Pases</a>
                     </div>
                 </div>
 
                 <!-- Right Side: Dynamic Gallery -->
                 <div class="hero-gallery-container" style="position: relative; width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;">
                     <div class="gallery-wrapper">
-                        <img src="/static/images/galeria/galeria1.jpg" alt="Chispa Experience 1" class="circular-img gallery-slide">
-                        <img src="/static/images/galeria/galeria2.jpg" alt="Chispa Experience 2" class="circular-img gallery-slide">
-                        <img src="/static/images/galeria/galeria2.jpg" alt="Chispa Experience 3" class="circular-img gallery-slide">
-                        <img src="/static/images/galeria/galeria2.jpg" alt="Chispa Experience 4" class="circular-img gallery-slide">
+                        <!-- Imágenes Originales -->
+                        <img src="/static/images/galeria/nuevas1.jpg" alt="Chispa Experience - Diversión" data-word="diversión" class="circular-img gallery-slide active">
+                        <img src="/static/images/galeria/nuevas2.jpg" alt="Chispa Experience - Comunidad" data-word="comunidad" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/nuevas3.jpg" alt="Chispa Experience - Celebración" data-word="celebración" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/nuevas4.jpg" alt="Chispa Experience - Alegría" data-word="alegría" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/nuevas5.jpg" alt="Chispa Experience - Imaginación" data-word="imaginación" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/galeria2.jpg" alt="Chispa Experience - Productividad" data-word="productividad" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/galeria3.jpg" alt="Chispa Experience - Conexión" data-word="conexión" class="circular-img gallery-slide">
+                        <img src="/static/images/galeria/galeria4.jpg" alt="Chispa Experience - Tranquilidad" data-word="tranquilidad" class="circular-img gallery-slide">
+                        <!-- Nuevas Imágenes de Drive -->
+                        <img src="/static/images/drive/fff.jpg" alt="Chispa Experience - Coworking" data-word="coworking" class="circular-img gallery-slide">
+                        <img src="/static/images/drive/decoracion_evento.jpg" alt="Chispa Experience - Eventos" data-word="eventos" class="circular-img gallery-slide">
+                        <img src="/static/images/drive/ffff.jpg" alt="Chispa Experience - Familia" data-word="familia" class="circular-img gallery-slide">
+                        <img src="/static/images/drive/dd.jpg" alt="Chispa Experience - Cuidado" data-word="cuidado" class="circular-img gallery-slide">
+                        <img src="/static/images/drive/f.jpg" alt="Chispa Experience - Gastronomía" data-word="gastronomía" class="circular-img gallery-slide">
                     </div>
                 </div>
                 
@@ -132,54 +114,407 @@
     <!-- MEMBRESÍAS SOLID BLUE BANNER -->
     <!-- MEMBRESÍAS SOLID BLUE BANNER -->
     <!-- MEMBRESÍAS SOLID BLUE BANNER -->
-    <!-- Marquee Gallery -->
-    <div class="marquee-container">
-        <div class="marquee-track">
-            <!-- Primer bloque de imágenes -->
-            <img src="/static/images/galeria/galeria1.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria2.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria3.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria4.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria5.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria6.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria 8.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria10.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria11.jpg" class="marquee-img">
-            <!-- Segundo bloque para loop infinito -->
-            <img src="/static/images/galeria/galeria1.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria2.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria3.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria4.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria5.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria6.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria 8.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria10.jpg" class="marquee-img">
-            <img src="/static/images/galeria/galeria11.jpg" class="marquee-img">
+    <!-- Marquee Gallery (Calm & Luxury Editorial) -->
+    <section class="marquee-section">
+        <div class="marquee-header-bar container">
+            <div class="marquee-header-left">
+                <span class="marquee-kicker">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    VIDA EN CHISPA
+                </span>
+                <h3 class="marquee-heading">Momentos & Espacios Reales</h3>
+            </div>
+            <div class="marquee-header-right">
+                <div class="marquee-nav-group">
+                    <button class="marquee-nav-btn" id="marqueePrevBtn" title="Desplazar hacia la izquierda" aria-label="Desplazar hacia la izquierda">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="marquee-nav-btn" id="marqueePauseBtn" title="Pausar o reanudar movimiento" aria-label="Pausar o reanudar movimiento">
+                        <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                        <svg class="icon-play" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </button>
+                    <button class="marquee-nav-btn" id="marqueeNextBtn" title="Desplazar hacia la derecha" aria-label="Desplazar hacia la derecha">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="marquee-container" id="marqueeContainer">
+            <div class="marquee-track" id="marqueeTrack">
+                <!-- Bloque 1: Originales + Drive con Badges Editoriales -->
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas1.jpg" alt="Diversión Segura en Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        Diversión Segura
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria2.jpg" alt="Comunidad Familiar Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        Comunidad Familiar
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas2.jpg" alt="Instalaciones Acogedoras" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Espacios Cálidos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria3.jpg" alt="Co-Working y Productividad" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        Co-Working & Relax
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas3.jpg" alt="Celebraciones Infantiles" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Party Center
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria4.jpg" alt="Sonrisas y Alegría" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        Sonrisas Chispa
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas4.jpg" alt="Estimulación Sensorial" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Estimulación Libre
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria5.jpg" alt="Café Gourmet" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Café de Especialidad
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas5.jpg" alt="Momentos Especiales" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Celebración Mágica
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria6.jpg" alt="Área de Juego Seguro" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        Área de Juegos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria 8.jpg" alt="Desarrollo Motriz" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                        Juego Motriz
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria10.jpg" alt="Momentos en Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                        Momentos Únicos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria11.jpg" alt="Familia Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Familia & Amigos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fff.jpg" alt="Coworking Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        Coworking con Vista
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/decoracion_evento.jpg" alt="Fiestas y Shows Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Fiestas & Shows
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/ffff.jpg" alt="Terraza Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        Terraza Familiar
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/f.jpg" alt="Cafetería Brunch Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Brunch Gourmet
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/dd.jpg" alt="Ludoteca y Niñeras" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        Cuidado de Nanitas
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/k.jpg" alt="Laberinto y Juegos" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        Laberinto & Soft Play
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/area_juegos.jpg" alt="Menú Gourmet Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Menú & Snacks
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/h.jpg" alt="Shows Infantiles" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Animación Infantil
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fiesta_espacio.jpg" alt="Espacio Ejecutivo Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Espacio Exclusivo
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fffg.jpg" alt="Kids Club Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Club de Niños
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/hhj.jpg" alt="Kids Gastronomía" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24m5.66 0 4.24-4.24M4.93 19.07l4.24-4.24m5.66 0 4.24 4.24"></path></svg>
+                        Talleres & Creatividad
+                    </div>
+                </div>
+
+                <!-- Bloque 2 para loop infinito suave: Mismos elementos -->
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas1.jpg" alt="Diversión Segura en Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        Diversión Segura
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria2.jpg" alt="Comunidad Familiar Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        Comunidad Familiar
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas2.jpg" alt="Instalaciones Acogedoras" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Espacios Cálidos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria3.jpg" alt="Co-Working y Productividad" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        Co-Working & Relax
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas3.jpg" alt="Celebraciones Infantiles" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Party Center
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria4.jpg" alt="Sonrisas y Alegría" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        Sonrisas Chispa
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas4.jpg" alt="Estimulación Sensorial" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Estimulación Libre
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria5.jpg" alt="Café Gourmet" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Café de Especialidad
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/nuevas5.jpg" alt="Momentos Especiales" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Celebración Mágica
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria6.jpg" alt="Área de Juego Seguro" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        Área de Juegos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria 8.jpg" alt="Desarrollo Motriz" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                        Juego Motriz
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria10.jpg" alt="Momentos en Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                        Momentos Únicos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/galeria/galeria11.jpg" alt="Familia Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Familia & Amigos
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fff.jpg" alt="Coworking Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        Coworking con Vista
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/decoracion_evento.jpg" alt="Fiestas y Shows Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                        Fiestas & Shows
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/ffff.jpg" alt="Terraza Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        Terraza Familiar
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/f.jpg" alt="Cafetería Brunch Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Brunch Gourmet
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/dd.jpg" alt="Ludoteca y Niñeras" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        Cuidado de Nanitas
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/k.jpg" alt="Laberinto y Juegos" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        Laberinto & Soft Play
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/area_juegos.jpg" alt="Menú Gourmet Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Menú & Snacks
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/h.jpg" alt="Shows Infantiles" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Animación Infantil
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fiesta_espacio.jpg" alt="Espacio Ejecutivo Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Espacio Exclusivo
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/fffg.jpg" alt="Kids Club Chispa" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Club de Niños
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <img src="/static/images/drive/hhj.jpg" alt="Kids Gastronomía" loading="lazy">
+                    <div class="marquee-card-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24m5.66 0 4.24-4.24M4.93 19.07l4.24-4.24m5.66 0 4.24 4.24"></path></svg>
+                        Talleres & Creatividad
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="blue-banner" id="membresias-banner" style="padding: 5rem 0;">
         <div class="container text-center" style="max-width: 1400px;">
-            <h2 style="margin-bottom: 0;">MEMBRESÍAS</h2>
-            <p style="font-size: 1.3rem; margin-top: 1rem; margin-bottom: 4rem; font-weight: 400; color: white;">Servicios incluidos en todas las membresías</p>
+            <span style="display: inline-block; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.18em; color: var(--mustard-bg); text-transform: uppercase; margin-bottom: 0.6rem;">CO-WORKING & LUDOTECA</span>
+            <h2 style="margin-bottom: 0.8rem; font-size: 2.8rem; color: white;">MEMBRESÍAS</h2>
+            <p style="color: rgba(255,255,255,0.92); font-size: 1.15rem; max-width: 650px; margin: 0 auto 3.5rem auto; line-height: 1.6;">
+                Un solo espacio para trabajar, crear y jugar.<br>
+                <span style="color: var(--mustard-bg); font-weight: 600;">¡Elige la membresía que se adapta a tu ritmo!</span>
+            </p>
             
-            <div class="plans-grid">
-                <!-- DAY PASS -->
+            <h3 class="plans-section-subtitle">PASES DE ACCESO</h3>
+            <div class="plans-grid-3" style="margin-bottom: 3.5rem; align-items: center;">
+
+                <!-- DAYPASS -->
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3>DAY PASS</h3>
+                        <h3>DAYPASS</h3>
+                        <div class="plan-price">$450 <span>MXN</span></div>
+                        <p class="plan-subtitle">1 niño · por día</p>
                     </div>
+                    <div class="plan-divider"></div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Acceso a coworking, ludoteca y cafetería durante todo el día.</li>
-                            <li><i class="fas fa-check"></i> Internet de alta velocidad (WiFi)</li>
-                            <li><i class="fas fa-check"></i> Servicio de niñeras por horas.</li>
-                            <li><i class="fas fa-check"></i> Comunidad y networking.</li>
-
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span> 1 adulto $100</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg></span> Adulto extra $100</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></span> Incluye Wifi</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> 1 Café americano</li>
                         </ul>
                     </div>
                     <div class="plan-footer">
-                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'DAY PASS', 450)">Seleccionar</button>
+                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'DAYPASS', 450)">Seleccionar</button>
                     </div>
                 </div>
 
@@ -187,14 +522,15 @@
                 <div class="plan-card">
                     <div class="plan-header">
                         <h3>PASE 5 DÍAS</h3>
+                        <div class="plan-price">$1,800 <span>MXN</span></div>
+                        <p class="plan-subtitle">1 adulto + 1 niño</p>
                     </div>
+                    <div class="plan-divider"></div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Acceso a coworking, ludoteca y cafetería durante todo el día.</li>
-                            <li><i class="fas fa-check"></i> Internet de alta velocidad (WiFi)</li>
-                            <li><i class="fas fa-check"></i> Servicio de niñeras por horas.</li>
-                            <li><i class="fas fa-check"></i> Comunidad y networking.</li>
-
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg></span> 10% en cafetería</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> 1 Café americano</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span> Válido 30 días naturales</li>
                         </ul>
                     </div>
                     <div class="plan-footer">
@@ -204,39 +540,117 @@
 
                 <!-- CHISPA EXPERIENCE (Destacado) -->
                 <div class="plan-card highlighted-plan">
-                    <div class="popular-badge">EL MÁS COMPLETO</div>
+                    <div class="popular-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-1px; margin-right:4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> EL MÁS COMPLETO</div>
                     <div class="plan-header">
                         <h3>CHISPA EXPERIENCE</h3>
+                        <div class="plan-price">$6,500 <span>MXN</span></div>
+                        <p class="plan-subtitle">1 adulto + 1 niño · 20 días</p>
                     </div>
+                    <div class="plan-divider"></div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Acceso ilimitado durante el mes.</li>
-                            <li><i class="fas fa-check"></i> Internet de alta velocidad (WiFi)</li>
-                            <li><i class="fas fa-check"></i> Servicio de niñeras.</li>
-                            <li><i class="fas fa-check"></i> Comunidad y networking.</li>
-                            <li><i class="fas fa-check"></i> Descuentos en celebraciones.</li>
-                            <li><i class="fas fa-check"></i> Eventos exclusivos para miembros.</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> 1 Café americano</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg></span> 10% en cafetería</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></span> 10% en Chispa Shop</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 4.5 5.5 8.5 7 9 1.5-.5 7-4.5 7-9a7 7 0 0 0-7-7z"></path><path d="M12 18v4"></path></svg></span> 10% en Fiestas Infantiles</li>
                         </ul>
                     </div>
                     <div class="plan-footer">
-                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'CHISPA EXPERIENCE', 3500)">Seleccionar</button>
+                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'CHISPA EXPERIENCE', 6500)">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plans-footnote">
+                <p>*Pase 5 días válido por 30 días naturales</p>
+                <p>*Pase 20 días válido por 45 días naturales</p>
+            </div>
+
+            <!-- ESPACIO DE TRABAJO -->
+            <h3 class="plans-section-subtitle">ESPACIO DE TRABAJO</h3>
+            <div class="plans-grid-2">
+                <!-- SÓLO POR HORA -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>SÓLO POR HORA</h3>
+                        <div class="plan-price">$200 <span>MXN</span></div>
+                        <p class="plan-subtitle">por hora</p>
+                    </div>
+                    <div class="plan-divider"></div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></span> Incluye Wifi</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Café americano</li>
+                        </ul>
+                    </div>
+                    <div class="plan-footer">
+                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'SÓLO POR HORA', 200)">Seleccionar</button>
                     </div>
                 </div>
 
-                <!-- MEMBRESÍAS CORPORATIVAS -->
+                <!-- WORKPASS 40 HORAS -->
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3>CORPORATIVAS</h3>
+                        <h3>WORKPASS 40 HORAS</h3>
+                        <div class="plan-price">$3,500 <span>MXN</span></div>
+                        <p class="plan-subtitle">40 horas · vigencia 30 días</p>
                     </div>
+                    <div class="plan-divider"></div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Paquetes personalizados para empresas.</li>
-                            <li><i class="fas fa-check"></i> Diseñamos el plan ideal para tu equipo.</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></span> Incluye Wifi</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Café americano</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></span> 2 impresiones gratis B&N por día</li>
+                            <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg></span> 10% en cafetería</li>
                         </ul>
                     </div>
                     <div class="plan-footer">
-                        <button class="btn-secondary w-100" style="border: none;" onclick="openPlanModal(this, 'MEMBRESÍAS CORPORATIVAS')">Contactar</button>
+                        <button class="btn-primary w-100" style="border: none;" onclick="openPlanModal(this, 'WORKPASS 40 HORAS', 3500)">Seleccionar</button>
                     </div>
+                </div>
+            </div>
+
+            <div class="plans-footnote">
+                <p>*Pase de 40 horas válido por 30 días naturales</p>
+            </div>
+
+            <!-- OFFICE SUPPLIES -->
+            <div style="background: rgba(255,255,255,0.08); border-radius: 20px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.15); text-align: left; max-width: 1100px; margin-left: auto; margin-right: auto; backdrop-filter: blur(10px);">
+                <h3 style="color: white; font-family: var(--font-title); margin-top: 0; margin-bottom: 2rem; font-size: 1.6rem; display: flex; align-items: center; gap: 0.8rem; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> OFFICE SUPPLIES</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; color: white;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600;">Impresión B&N</span>
+                            <span style="font-weight: 800; color: var(--mustard-bg);">$5 MXN</span>
+                        </div>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin: 0;">por hoja, tamaño carta</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600;">Impresión a color</span>
+                            <span style="font-weight: 800; color: var(--mustard-bg);">$15 MXN</span>
+                        </div>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin: 0;">por hoja, tamaño carta</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600;">Scanner</span>
+                            <span style="font-weight: 800; color: var(--mustard-bg);">$5 MXN</span>
+                        </div>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin: 0;">por hoja, tamaño carta</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600;">Audífonos Bluetooth</span>
+                            <span style="font-weight: 800; color: var(--mustard-bg);">$200 MXN</span>
+                        </div>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin: 0;">venta por unidad</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center; font-size: 0.88rem; color: rgba(255,255,255,0.85); border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 1.2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="display:inline-flex; align-items:center; gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg> Aceptamos tarjetas de crédito</span>
+                    <span>Precios en MXN · IVA incluido</span>
                 </div>
             </div>
         </div>
@@ -249,31 +663,31 @@
             <div class="three-cols">
                 <div class="service-card">
                     <h4>Coworking + Ludoteca</h4>
-                    <img src="/static/images/galeria/galeria11.jpg" alt="Coworking">
+                    <img src="/static/images/galeria/chispa-foto.jpg" alt="Coworking">
                     <ul>
-                        <li><i class="fas fa-wifi"></i> Wifi de alta velocidad</li>
-                        <li><i class="fas fa-child"></i> Nanitas capacitadas</li>
-                        <li><i class="fas fa-video"></i> Monitoreo CCTV</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></span> Wifi de alta velocidad</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span> Nanitas capacitadas</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></span> Monitoreo CCTV</li>
                     </ul>
-                    <a href="#pricing" class="btn-primary w-100" style="margin-top: 1rem;">Ver Pases</a>
+                    <a href="#membresias-banner" class="btn-primary w-100" style="margin-top: 1rem;">Ver Pases</a>
                 </div>
                 <div class="service-card">
                     <h4>Party Center</h4>
                     <img src="/static/images/galeria/img_8580.webp" alt="Party Room">
                     <ul>
-                        <li><i class="fas fa-birthday-cake"></i> Fiestas infantiles temáticas</li>
-                        <li><i class="fas fa-user-friends"></i> Capacidad para 50 adultos</li>
-                        <li><i class="fas fa-concierge-bell"></i> Servicio completo de catering</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span> Fiestas infantiles temáticas</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span> Capacidad para 50 adultos y 50 niños</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v8a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V2"></path><line x1="12" y1="14" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg></span> Servicio completo de catering</li>
                     </ul>
-                    <a href="/fiestas.html" class="btn-primary w-100" style="margin-top: 1rem; background: var(--secondary-color);">Cotizar Fiesta</a>
+                    <a href="/fiestas.html" class="btn-pink w-100" style="margin-top: 1rem;">Cotizar Fiesta</a>
                 </div>
                 <div class="service-card">
-                    <h4>Cafetería Premium</h4>
+                    <h4>Área Gastronómica</h4>
                     <img src="/static/images/galeria/copia_de_dsc00094.webp" alt="Cafeteria">
                     <ul>
-                        <li><i class="fas fa-coffee"></i> Café de especialidad</li>
-                        <li><i class="fas fa-cookie-bite"></i> Snacks saludables para peques</li>
-                        <li><i class="fas fa-tag"></i> Descuentos para miembros</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Café de especialidad</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></span> Snacks saludables para peques</li>
+                        <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></span> Descuentos para miembros</li>
                     </ul>
                     <a href="/cafeteria.html" class="btn-secondary w-100" style="margin-top: 1rem;">Ver Menú</a>
                 </div>
@@ -281,19 +695,133 @@
         </div>
     </section>
 
-    <!-- 4. Calendario de Actividades -->
-    <section style="background: white; padding: 4rem 0;">
+    <!-- 4. Talleres y Actividades (Carrusel Interactivo) -->
+    <section style="background: white; padding: 4.5rem 0;">
         <div class="container">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 3rem;">
-                <div style="flex: 1; min-width: 300px; text-align: left;">
-                    <h2 class="section-title" style="text-align: left;">Talleres y Actividades</h2>
-                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.6;">Próximamente tendremos increíbles talleres diseñados para el desarrollo integral de tus pequeños. ¡Mantente atento a nuestras redes sociales para conocer todas las novedades!</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 3.5rem;">
+                <div style="flex: 1; min-width: 320px; text-align: left;">
+                    <span style="display: inline-block; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.16em; color: var(--primary-color); text-transform: uppercase; margin-bottom: 0.5rem;">DESARROLLO INTEGRAL & ESTIMULACIÓN</span>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1rem; font-size: 2.3rem;">Talleres y Actividades</h2>
+                    <p style="margin-bottom: 1.8rem; font-size: 1.05rem; line-height: 1.65; color: #4A4A4A;">Próximamente tendremos increíbles talleres diseñados para el desarrollo integral de tus pequeños. ¡Mantente atento a nuestras redes sociales para conocer todas las novedades y fechas de apertura!</p>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <div class="workshop-pillar-item">
+                            <span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24m5.66 0 4.24-4.24M4.93 19.07l4.24-4.24m5.66 0 4.24 4.24"></path></svg></span>
+                            <span><strong>Arte y Expresión:</strong> Caballetes, acuarelas y modelado creativo</span>
+                        </div>
+                        <div class="workshop-pillar-item">
+                            <span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span>
+                            <span><strong>Mini Chef:</strong> Repostería y recetas saludables para peques</span>
+                        </div>
+                        <div class="workshop-pillar-item">
+                            <span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></span>
+                            <span><strong>Estimulación Sensorial:</strong> Bloques naturales y psicomotricidad</span>
+                        </div>
+                        <div class="workshop-pillar-item">
+                            <span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg></span>
+                            <span><strong>Juego Simbólico:</strong> Dinámicas guiadas con nanitas capacitadas</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://www.instagram.com/chispaexperience/" target="_blank" rel="noopener" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; border: none; padding: 0.75rem 1.4rem; font-size: 0.95rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            Ver en Instagram
+                        </a>
+                        <a href="https://wa.me/525587989223?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20los%20pr%C3%B3ximos%20talleres%20y%20actividades%20en%20Chispa." target="_blank" rel="noopener" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.75rem 1.4rem; font-size: 0.95rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            Consultar Fechas
+                        </a>
+                    </div>
                 </div>
-                <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
-                    <div style="width: 100%; aspect-ratio: 16/9; background-color: #f0f0f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc;">
-                        <div style="text-align: center; color: #888;">
-                            <i class="fas fa-video" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p style="font-weight: bold; font-size: 1.2rem;">Espacio para Video</p>
+
+                <div style="flex: 1; min-width: 320px; display: flex; justify-content: center;">
+                    <div class="workshops-carousel-container" id="workshopsCarousel">
+                        <div class="workshops-carousel-viewport">
+                            <div class="workshops-carousel-track" id="carouselTrack">
+                                
+                                <!-- Slide 1: Arte y Pintura -->
+                                <div class="workshop-slide active">
+                                    <img src="/static/images/talleres/taller_arte.jpg" alt="Taller de Arte y Pintura Infantil" loading="lazy">
+                                    <div class="workshop-slide-overlay"></div>
+                                    <div class="workshop-slide-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24m5.66 0 4.24-4.24M4.93 19.07l4.24-4.24m5.66 0 4.24 4.24"></path></svg>
+                                        Taller Creativo
+                                    </div>
+                                    <div class="workshop-slide-content">
+                                        <h4>Pequeños Artistas</h4>
+                                        <p>Acuarelas ecológicas, caballetes de madera y expresión plástica libre.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 2: Mini Chef -->
+                                <div class="workshop-slide">
+                                    <img src="/static/images/talleres/taller_chef.jpg" alt="Taller Mini Chef y Repostería" loading="lazy">
+                                    <div class="workshop-slide-overlay"></div>
+                                    <div class="workshop-slide-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                                        Cocina Divertida
+                                    </div>
+                                    <div class="workshop-slide-content">
+                                        <h4>Mini Chef & Nutrición</h4>
+                                        <p>Decoración de tartaletas con fruta fresca y recetas saludables sin fuego.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 3: Estimulación Sensorial -->
+                                <div class="workshop-slide">
+                                    <img src="/static/images/talleres/taller_sensorial.jpg" alt="Taller de Estimulación Temprana y Sensorial" loading="lazy">
+                                    <div class="workshop-slide-overlay"></div>
+                                    <div class="workshop-slide-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                                        Montessori & Sensorial
+                                    </div>
+                                    <div class="workshop-slide-content">
+                                        <h4>Estimulación Temprana</h4>
+                                        <p>Materiales nobles, texturas suaves y desarrollo motriz para los más peques.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 4: Fresh Market Chispa -->
+                                <div class="workshop-slide">
+                                    <img src="/static/images/talleres/taller_mercado.jpg" alt="Juego Simbólico en Fresh Market" loading="lazy">
+                                    <div class="workshop-slide-overlay"></div>
+                                    <div class="workshop-slide-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                        Juego Simbólico
+                                    </div>
+                                    <div class="workshop-slide-content">
+                                        <h4>Fresh Market Chispa</h4>
+                                        <p>Habilidades socioemocionales, autonomía e imaginación compartida.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Slide 5: Dinámicas Guiadas -->
+                                <div class="workshop-slide">
+                                    <img src="/static/images/talleres/taller_dinamicas.jpg" alt="Dinámicas Lúdicas con Nanitas Especializadas" loading="lazy">
+                                    <div class="workshop-slide-overlay"></div>
+                                    <div class="workshop-slide-badge">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                                        Psicomotricidad
+                                    </div>
+                                    <div class="workshop-slide-content">
+                                        <h4>Juegos & Dinámicas</h4>
+                                        <p>Circuitos psicomotrices y actividades guiadas por nanitas en pista.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Botones Nav -->
+                            <button class="carousel-btn prev" id="prevSlideBtn" aria-label="Anterior">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            </button>
+                            <button class="carousel-btn next" id="nextSlideBtn" aria-label="Siguiente">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+
+                            <!-- Puntos indicadores -->
+                            <div class="carousel-pagination" id="carouselPagination"></div>
                         </div>
                     </div>
                 </div>
@@ -327,46 +855,136 @@
         </div>
     </section>
 
-    <!-- 5. Social Proof (Testimonios) -->
+    <!-- 5. Galería de Nuestras Instalaciones (Fotos Reales de Chispa Experience) -->
+    <section style="background: #FAFAFA; padding: 4.5rem 0; border-top: 1px solid #ECECEC; border-bottom: 1px solid #ECECEC;">
+        <div class="container text-center">
+            <h2 class="section-title">Nuestras Instalaciones</h2>
+            <p style="max-width: 650px; margin: 0 auto 2.5rem; color: #666; font-size: 1.05rem;">Espacios diseñados para que los adultos trabajen con tranquilidad mientras los niños exploran, juegan y aprenden con la mayor seguridad.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;">
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/fff.jpg" alt="Coworking Chispa" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Coworking con Vista a Ludoteca</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Trabaja con wifi de alta velocidad, café y visibilidad total hacia el área de juegos.</p>
+                    </div>
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/decoracion_evento.jpg" alt="Party Center Chispa" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Party Center y Shows en Vivo</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Celebraciones mágicas con personajes, animación y catering completo.</p>
+                    </div>
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/ffff.jpg" alt="Terraza Chispa" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Terraza Familiar</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Ambiente relajado al aire libre para disfrutar alimentos gourmet en familia.</p>
+                    </div>
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/dd.jpg" alt="Ludoteca con Niñeras" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Cuidado de Niñeras Calificadas</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Staff altamente preparado para el acompañamiento y seguridad de tus pequeños.</p>
+                    </div>
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/f.jpg" alt="Cafetería y Toasts Gourmet" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Gastronomía y Café de Especialidad</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Platillos saludables, desayunos frescos y repostería artesanal.</p>
+                    </div>
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.06); background: white;">
+                    <img src="/static/images/drive/k.jpg" alt="Laberinto y Juegos Infantiles" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                    <div style="padding: 1.2rem; text-align: left;">
+                        <h4 style="margin: 0 0 0.4rem; color: var(--secondary-color);">Laberinto y Soft Play</h4>
+                        <p style="margin: 0; font-size: 0.88rem; color: #777;">Área de juego motriz seguro con materiales de primera calidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Social Proof (Testimonios) -->
     <section class="acerca-bg" style="padding: 5rem 0;">
         <div class="container text-center">
             <h2 class="section-title">Lo que dicen nuestras familias</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Quiero decirles que hoy fui a chispa con mi pequeño y WOW 😍😍 un servicio de 100000 estrellas, las niñeras unas divinas !!!! Y el servicio de cafetería wow !"</p>
-                    <div class="author">
-                        <span>Ivis Mackay <br><small>Reseña en Google</small></span>
+            <div class="testimonials-wrapper">
+                <button class="testimonial-nav-btn prev" onclick="scrollTestimonials(-1)" aria-label="Comentario anterior">
+                    ‹
+                </button>
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"Quiero decirles que hoy fui a chispa con mi pequeño y WOW, un servicio de 100000 estrellas, las niñeras unas divinas !!!! Y el servicio de cafetería wow !"</p>
+                        <div class="author">
+                            <span>Ivis Mackay <br><small>Reseña en Google</small></span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"We had a great experience here! The play area is great, my 2 year old loved it and would have stayed for hours! The Nannys were excellent. The best part, they have a really nice cafe and terrace to sit and relax (or work) whilst the kids play! Definitely recommend"</p>
+                        <div class="author">
+                            <span>Amy Williams <br><small>Reseña en Google</small></span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"Me encanto!!! Sus instalaciones, todo su personal , sus nanitas son divinas , hicieron que pasáramos una mañana agusto las mamis platicando y los peques jugando !!! Mega lo recomiendo !!!!"</p>
+                        <div class="author">
+                            <span>Andrea Ibarra <br><small>Reseña en Google</small></span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"Increíble lugar, mi hijo la pasó super y siempre muy bien cuidado"</p>
+                        <div class="author">
+                            <span>Andrea Sánchez <br><small>Reseña en Google</small></span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F8D37E" stroke="#E5B842" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"A mis hijos les encantó, sin duda volverán a festejar su cumpleaños ahí"</p>
+                        <div class="author">
+                            <span>juan sellerier <br><small>Reseña en Google</small></span>
+                        </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"We had a great experience here! The play area is great, my 2 year old loved it and would have stayed for hours! The Nannys were excellent. The best part, they have a really nice cafe and terrace to sit and relax (or work) whilst the kids play! Definitely recommend"</p>
-                    <div class="author">
-                        <span>Amy Williams <br><small>Reseña en Google</small></span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Me encanto!!! Sus instalaciones, todo su personal , sus nanitas son divinas , hicieron que pasáramos una mañana agusto las mamis platicando y los peques jugando !!! Mega lo recomiendo !!!!"</p>
-                    <div class="author">
-                        <span>Andrea Ibarra <br><small>Reseña en Google</small></span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Increíble lugar, mi hijo la pasó super y siempre muy bien cuidado"</p>
-                    <div class="author">
-                        <span>Andrea Sánchez <br><small>Reseña en Google</small></span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"A mis hijos les encantó, sin duda volverán a festejar su cumpleaños ahí"</p>
-                    <div class="author">
-                        <span>juan sellerier <br><small>Reseña en Google</small></span>
-                    </div>
-                </div>
+                <button class="testimonial-nav-btn next" onclick="scrollTestimonials(1)" aria-label="Comentario siguiente">
+                    ›
+                </button>
             </div>
         </div>
     </section>
@@ -377,25 +995,26 @@
             <h2 class="section-title text-center">Preguntas Frecuentes</h2>
             <div class="faq-container">
                 <div class="faq-item">
-                    <button class="faq-question">¿A partir de qué edad pueden entrar los niños a la ludoteca? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-question">¿A partir de qué edad pueden entrar los niños a la ludoteca? <span class="faq-icon">▾</span></button>
                     <div class="faq-answer">
-                        <p>Aceptamos pequeños desde 1 año hasta 10 años. Nuestras áreas y actividades están diseñadas para ser seguras y divertidas en todo este rango de edades, con supervisión constante.</p>
+                        <p>Aceptamos pequeños desde 1 año hasta 10 años. Nuestras áreas y actividades están diseñadas para ser seguras y divertidas en todo este rango de edades, con supervisión constante para las mamás y los niños.</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #555;"><strong>Nota:</strong> El servicio de niñera exclusiva por hora para bebés de brazos está sujeto a disponibilidad; si hay muchos niños en el área, podría no ser posible ofrecerlo.</p>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">¿Qué horarios manejan en el Coworking? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-question">¿Qué horarios manejan en el Coworking? <span class="faq-icon">▾</span></button>
                     <div class="faq-answer">
                         <p>Nuestro Coworking y ludoteca están abiertos de Lunes a Viernes de 9:00 AM a 7:00 PM, y Sábados de 9:00 AM a 2:00 PM. Los domingos están reservados exclusivamente para eventos privados y fiestas.</p>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">¿Tengo que quedarme en el local mientras mi hijo está en la ludoteca? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-question">¿Tengo que quedarme en Chispa mientras mi hijo juega? <span class="faq-icon">▾</span></button>
                     <div class="faq-answer">
-                        <p>Sí, Chispa es un espacio compartido. Los padres deben permanecer dentro de las instalaciones (en el área de coworking o cafetería) mientras sus hijos están en la ludoteca jugando.</p>
+                        <p>Sí, Chispa es un espacio compartido. Los padres deben permanecer dentro de las instalaciones (en el área de coworking o cafetería) mientras sus hijos están en la ludoteca jugando. Excepto en los campamentos de primavera, verano e invierno.</p>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">¿Puedo ingresar alimentos o bebidas externas? <i class="fas fa-chevron-down"></i></button>
+                    <button class="faq-question">¿Puedo ingresar alimentos o bebidas externas? <span class="faq-icon">▾</span></button>
                     <div class="faq-answer">
                         <p>Por políticas de higiene y seguridad (alergias de otros niños), no se permite el ingreso de alimentos externos. Contamos con una cafetería muy completa con opciones deliciosas y saludables para toda la familia.</p>
                     </div>
@@ -405,46 +1024,73 @@
     </section>
 
     <!-- Footer -->
-    <footer style="background-color: var(--mustard-bg); padding: 3rem 0; color: white; margin-top: auto;">
-        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left;">
+    <footer>
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; text-align: left;">
             <div>
-                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Chispa Experience</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.5;"><i class="fas fa-map-marker-alt" style="width: 20px;"></i> Av. Ejército Nacional Mexicano 963-Piso 2, Polanco, Col. Irrigación, Miguel Hidalgo, 11550 Ciudad de México, CDMX</p>
+                <h4>Chispa Experience</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.6; display: flex; align-items: flex-start; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Av. Ejército Nacional Mexicano 963-Piso 2, Polanco, Col. Irrigación, Miguel Hidalgo, 11550 Ciudad de México, CDMX</p>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Contacto</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fas fa-phone" style="width: 20px;"></i> 55 8798 9223</p>
-                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="far fa-clock" style="width: 20px;"></i> Abierto hoy hasta las 7:00 p.m.</p>
+                <h4>Contacto</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg> 55 8798 9223</p>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> info@chispaexperience.com</p>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 3px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>Lunes a Sábado de 9:00 am a 7:00 pm<br><span style="font-size: 0.8rem; color: var(--text-muted);">Domingos abierto para fiestas previa reservación</span></span></p>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Síguenos</h4>
-                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
-                    <a href="https://www.instagram.com/chispaexperience/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@chispa.experience" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/in/chispa-experience-846a13399/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><i class="fab fa-linkedin-in"></i></a>
+                <h4>Síguenos</h4>
+                <div style="display: flex; gap: 0.8rem; font-size: 1.2rem;">
+                    <a href="https://www.instagram.com/chispaexperience/" target="_blank" class="social-icon-btn instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://www.tiktok.com/@chispa.experience" target="_blank" class="social-icon-btn tiktok" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/chispa-experience-846a13399/" target="_blank" class="social-icon-btn linkedin" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.94 0-1.7.76-1.7 1.7s.76 1.7 1.7 1.7 1.7-.76 1.7-1.7-.76-1.7-1.7-1.7z"/></svg></a>
                 </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem;">
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); font-size: 0.82rem; color: var(--text-muted);">
             &copy; 2026 Chispa Experience. Todos los derechos reservados.
         </div>
     </footer>
 
     <script>
-        // Hero Dynamic Word
+        // Hero Dynamic Word & Gallery Slider (Synchronized)
+        const slides = document.querySelectorAll('.gallery-slide');
         const dynamicWord = document.getElementById('dynamic-word');
-        if (dynamicWord) {
-            const words = ['productividad', 'comunidad', 'diversión'];
-            let wordIndex = 0;
-            
-            setInterval(() => {
-                dynamicWord.style.opacity = 0;
+
+        if (slides.length > 0 && dynamicWord) {
+            let currentSlide = 0;
+            let isPaused = false;
+
+            const galleryContainer = document.querySelector('.hero-gallery-container');
+            if (galleryContainer) {
+                galleryContainer.addEventListener('mouseenter', () => { isPaused = true; });
+                galleryContainer.addEventListener('mouseleave', () => { isPaused = false; });
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                slides.forEach((slide, i) => {
+                    if (i === currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+
+                const nextWord = slides[currentSlide].getAttribute('data-word') || 'diversión';
+                dynamicWord.style.opacity = '0';
+                dynamicWord.style.transform = 'translateY(-3px)';
                 setTimeout(() => {
-                    wordIndex = (wordIndex + 1) % words.length;
-                    dynamicWord.textContent = words[wordIndex];
-                    dynamicWord.style.opacity = 1;
-                }, 300);
-            }, 3500);
+                    dynamicWord.textContent = nextWord;
+                    dynamicWord.style.opacity = '1';
+                    dynamicWord.style.transform = 'translateY(0)';
+                }, 80);
+            }
+
+            setInterval(() => {
+                if (!isPaused) {
+                    const next = (currentSlide + 1) % slides.length;
+                    goToSlide(next);
+                }
+            }, 4500);
         }
 
         // Script for FAQ Accordion
@@ -464,7 +1110,15 @@
                 }
             });
         });
+
+        // Testimonials Slider Navigation
+        function scrollTestimonials(direction) {
+            const track = document.getElementById('testimonialsTrack');
+            if (track) {
+                track.scrollBy({ left: direction * 360, behavior: 'smooth' });
+            }
+        }
     </script>
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=17"></script>
 </body>
 </html>

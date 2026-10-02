@@ -8,6 +8,7 @@ class TipoPase(str, Enum):
     PASE_5_DIAS = "PASE_5_DIAS"
     WORKPASS_40 = "WORKPASS_40"
     CHISPA_20 = "CHISPA_20"
+    CHISPA_EXPERIENCE = "CHISPA_EXPERIENCE"
     NINGUNO = "NINGUNO"
     SOLO_HORA = "SOLO_HORA"
 
@@ -39,7 +40,7 @@ class CRMInternal:
             slots = 5
         elif client_data.tipo_pase_activo == TipoPase.WORKPASS_40:
             slots = 40 # hours essentially, simplified
-        elif client_data.tipo_pase_activo == TipoPase.CHISPA_20:
+        elif client_data.tipo_pase_activo in (TipoPase.CHISPA_20, TipoPase.CHISPA_EXPERIENCE):
             slots = 20
         elif client_data.tipo_pase_activo == TipoPase.SOLO_HORA:
             slots = 1
