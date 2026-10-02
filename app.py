@@ -61,6 +61,13 @@ if not os.path.exists(static_dir):
 
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
+@app.get("/favicon.ico")
+def read_favicon():
+    favicon_path = os.path.join(os.path.dirname(__file__), "favicon.ico")
+    if os.path.exists(favicon_path):
+        return FileResponse(favicon_path)
+    raise HTTPException(status_code=404, detail="Favicon not found")
+
 @app.get("/")
 def read_index():
     return FileResponse(
