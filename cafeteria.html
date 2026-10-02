@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Gastronómica - Chispa Experience</title>
+    <link rel="stylesheet" href="/static/styles.css?v=17">
+    <style>
+        .cafe-hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/static/images/galeria/copia_de_dsc00094.webp') center/cover;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .cafe-hero h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .menu-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+        .menu-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .menu-card-body {
+            padding: 2rem;
+        }
+        .menu-card h3 {
+            font-family: var(--font-title);
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 0.5rem;
+        }
+        .menu-item span {
+            font-weight: 600;
+            color: #333;
+        }
+        .menu-item small {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .discount-banner {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 4rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            box-shadow: 0 10px 20px rgba(232,61,124,0.2);
+        }
+        .discount-banner .emoji-icon,
+        .discount-banner i {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body style="background-color: var(--light-bg);">
+    <header>
+        <div class="container header-inner">
+            <div class="header-left">
+                <a href="/checkout.html">MEMBRESÍA / CO-WORKING</a>
+                <a href="/fiestas.html">PARTY CENTER</a>
+            </div>
+            <a href="/" class="logo">
+                <img src="/static/logo.jpg" alt="Chispa Logo" style="height: 120px; mix-blend-mode: multiply;">
+            </a>
+            <div class="header-right">
+                <a href="/contacto.html">CONTACTO</a>
+                <a href="/cafeteria.html">CAFETERÍA</a>
+                <a href="#" aria-label="Mi Cuenta" style="display:inline-flex;align-items:center;color:var(--dark-color);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/525587989223" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg>
+    </a>
+
+    <section class="cafe-hero">
+        <div class="container">
+            <h1>Área Gastronómica</h1>
+            <p style="font-size: 1.2rem; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Disfruta de café de especialidad y snacks saludables para toda la familia mientras trabajas o te relajas.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="discount-banner">
+            <span class="emoji-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></span>
+            <div style="text-align: left;">
+                <h3 style="font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 0.3rem;">¡Beneficios para Miembros!</h3>
+                <p>Todos nuestros planes incluyen <strong>Café Americano Refill</strong> gratis y hasta <strong>15% de descuento</strong> en todo el menú.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title text-center">Nuestro Menú</h2>
+        
+        <div class="menu-grid mb-2">
+            <!-- Bowls y Desayuno -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/bowls_desayuno.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"></path><path d="M15 2v18"></path><path d="M5 2v8a3 3 0 0 0 3 3 3 3 0 0 0 3-3V2"></path><path d="M8 13v9"></path></svg></span> Bowls y Desayuno</h3>
+                    <div class="menu-item">
+                        <div>
+                            <span>Bowl de Açaí</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Helado de açaí, zarzamora, frambuesa, plátano y miel.</p>
+                        </div>
+                        <small>$190</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Frutas Rojas</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Yogurt y granola.</p>
+                        </div>
+                        <small>$170</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Plato de Frutas</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">De temporada.</p>
+                        </div>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Molletes con queso</span>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Hotcakes de avena</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Con plátano, fresa y miel.</p>
+                        </div>
+                        <small>$170</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toasts -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/toasts.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Toasts</h3>
+                    <div class="menu-item">
+                        <div>
+                            <span>Toast con huevo</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Pan de masa madre, aguacate y queso cottage.</p>
+                        </div>
+                        <small>$190</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Toast de Frutos Rojos</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Pan de masa madre, queso de cabra, mermelada y frutos rojos.</p>
+                        </div>
+                        <small>$190</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Toast clásico de salmón</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Pan de masa madre, aguacate, salmón, alcaparras y brotes de alfalfa.</p>
+                        </div>
+                        <small>$220</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sándwiches y Chapatas -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/sandwiches_chapatas.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18v2H3z"></path><path d="M5 11V7a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v4"></path><path d="M5 13v4a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-4"></path></svg></span> Sándwiches y Chapatas</h3>
+                    <div class="menu-item">
+                        <div>
+                            <span>Sándwich de Jamón y Queso</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Pan de masa madre, jamón de pavo con papas fritas o ensalada.</p>
+                        </div>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Chapata de pollo</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Aderezo Chipotle.</p>
+                        </div>
+                        <small>$170</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Chapata Española</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Jamón serrano con salami.</p>
+                        </div>
+                        <small>$210</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Sincronizada Árabe</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Jamón y queso.</p>
+                        </div>
+                        <small>$140</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastas y Ensaladas -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/ensaladas_pastas.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"></path><path d="M7 12c0-3 2-6 5-6s5 3 5 6"></path><path d="M12 3v3"></path></svg></span> Pastas y Ensaladas</h3>
+                    <div class="menu-item">
+                        <div>
+                            <span>Pasta con salsa de tu elección</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Pesto, mantequilla o Alfredo.</p>
+                        </div>
+                        <small>$160</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Ensalada del Huerto</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Mezcla de lechuga, espinaca baby, rúcula, corazones de palma, pepino cherry, ajonjolí caramelizado, nuez y queso de cabra. Aderezo mostaza y miel / vinagreta.</p>
+                        </div>
+                        <small>$180</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Ensalada del Bosque</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Mezcla de lechuga, fresa, manzana, uva, queso de cabra, naranja, ajonjolí caramelizado y nuez.</p>
+                        </div>
+                        <small>$180</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Milanesa con ensalada</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">O con papas fritas.</p>
+                        </div>
+                        <small>$170</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Croissant de jamón y queso</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Jamón de pavo con queso.</p>
+                        </div>
+                        <small>$150</small>
+                    </div>
+                    <div style="background: #fdf6f0; padding: 0.8rem; border-radius: 8px; font-size: 0.85rem; margin-top: 1rem; border: 1px dashed var(--primary-color);">
+                        <strong style="color: var(--secondary-color); display: block; margin-bottom: 0.3rem;">MÁS ES MÁS (Extras):</strong>
+                        Salmón +$50 | Pollo +$40 | Jamón Serrano +$40 | Jamón de Pavo +$30 | Huevo +$20
+                    </div>
+                </div>
+            </div>
+
+            <!-- Para Compartir y Dulces -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/dulces_compartir.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21l2-14H5l2 14z"></path><path d="M5 7a3 3 0 0 1 5-2 3 3 0 0 1 4 0 3 3 0 0 1 5 2"></path></svg></span> Compartir y Momentos Dulces</h3>
+                    <div class="menu-item">
+                        <span>Plato de Crudités</span>
+                        <small>$110</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Tabla de quesos</span>
+                        <small>$350</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Jocoque & Pan Pita</span>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Guacamole</span>
+                        <small>$110</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Orden de Papas a la Francesa</span>
+                        <small>$100</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Orden de botanas</span>
+                            <p style="font-size: 0.8rem; color: #777; margin: 0.2rem 0 0 0;">Papas fritas saladas o picantes y cacahuates con salsa chamoy o Valentina.</p>
+                        </div>
+                        <small>$90</small>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem; font-family: var(--font-title);"><span class="emoji-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="8" cy="9" r="1"></circle><circle cx="15" cy="8" r="1"></circle><circle cx="10" cy="14" r="1"></circle><circle cx="16" cy="14" r="1"></circle></svg></span> Momentos Dulces</h4>
+                    <div class="menu-item">
+                        <span>Gelatina de agua</span>
+                        <small>$22</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Gelatina de leche</span>
+                        <small>$28</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Galleta</span>
+                        <small>$90</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Rebanada de Panqué</span>
+                        <small>$90</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas Calientes -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/bebidas_calientes.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Bebidas Calientes</h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: -1rem; margin-bottom: 1rem; font-weight: bold;">Taza 12 OZ</p>
+                    <div class="menu-item">
+                        <div>
+                            <span>Expresso</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">4 oz.</p>
+                        </div>
+                        <small>$30</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Americano</span>
+                        <small>$50</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Leche</span>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Latte</span>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Capuchino</span>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Moka</span>
+                        <small>$70</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Matcha</span>
+                        <small>$70</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Chai</span>
+                        <small>$70</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Taro</span>
+                        <small>$70</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Chocolate</span>
+                        <small>$50</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Té — Variedad</span>
+                        <small>$40</small>
+                    </div>
+                    <div style="background: #fdf6f0; padding: 0.8rem; border-radius: 8px; font-size: 0.85rem; margin-top: 1rem; border: 1px dashed var(--primary-color);">
+                        <strong style="color: var(--secondary-color); display: block; margin-bottom: 0.3rem;">SHOT, SHOT! (Personaliza):</strong>
+                        Vainilla +$15 | Caramelo +$15 | Crema irlandesa +$15 | Leche de soya o almendra +$10 | Shot de café +$30
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas Frías y Refrescos -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/bebidas_frias.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"></path><path d="M12 21v-7"></path><path d="m4 3 8 11 8-11Z"></path><path d="m19 7-3 4"></path></svg></span> Bebidas Frías y Refrescos</h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: -1rem; margin-bottom: 1rem; font-weight: bold;">Taza 16 OZ</p>
+                    <div class="menu-item">
+                        <span>Iced Americano</span>
+                        <small>$55</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Iced Latte</span>
+                        <small>$70</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Iced Moka</span>
+                        <small>$85</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Iced Taro</span>
+                        <small>$85</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Iced Matcha</span>
+                        <small>$85</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Iced Chai</span>
+                        <small>$80</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Matcha Frappé</span>
+                        <small>$85</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Taro Frappé</span>
+                        <small>$90</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Mocha Frappé</span>
+                        <small>$90</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Chai Frappé</span>
+                        <small>$90</small>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem; font-family: var(--font-title);"><span class="emoji-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg></span> Aguas y Refrescos</h4>
+                    <div class="menu-item">
+                        <span>Agua embotellada</span>
+                        <small>$22</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Agua Mineral</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Topo Chico.</p>
+                        </div>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>SanPellegrino</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Sabores.</p>
+                        </div>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Sodas Italianas</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Frutos del bosque y mango.</p>
+                        </div>
+                        <small>$90</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Limonada</span>
+                        <small>$50</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Coca Cola / Zero / Light</span>
+                        <small>$50</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Jugo Verde</span>
+                        <small>$80</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Jugo Naranja</span>
+                        <small>$60</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vinos, Cervezas y 0.0% -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/cervezas_vinos.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"></path><path d="M12 11v11"></path><path d="m19 3-4 8H9L5 3Z"></path></svg></span> Cervezas y Vinos</h3>
+                    <div style="background: #fdf6f0; padding: 0.8rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px dashed var(--primary-color);">
+                        <strong style="color: var(--secondary-color); display: block; margin-bottom: 0.3rem;">BEBIDA DE LA TEMPORADA:</strong>
+                        Tinto de Verano: Copa $150 | Jarra 1 LT $380<br>
+                        Clericot: Copa $150 | Jarra 1 LT $380
+                    </div>
+                    <div class="menu-item">
+                        <span>Vino Blanco (Copa/Botella)</span>
+                        <small>$150 / $500</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Vino Tinto (Copa/Botella)</span>
+                        <small>$150 / $500</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Mimosa (Copa)</span>
+                        <small>$140</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Prosecco (Copa/Botella)</span>
+                        <small>$150 / $520</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Champagne (Botella)</span>
+                        <small>$2,000</small>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem; font-family: var(--font-title);"><span class="emoji-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"></path><path d="M5 6h12v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6z"></path><line x1="8" y1="10" x2="8" y2="17"></line><line x1="12" y1="10" x2="12" y2="17"></line></svg></span> Cervezas Clásicas</h4>
+                    <div class="menu-item">
+                        <span>Cerveza Corona / Victoria / Michelob Ultra</span>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Vaso escarchado</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Limón y sal, o clamato.</p>
+                        </div>
+                        <small>$15</small>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 1.5rem 0;">
+                    <h4 style="color: var(--secondary-color); margin-bottom: 1rem; font-family: var(--font-title);"><span class="emoji-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span> Experiencia 0.0%</h4>
+                    <div class="menu-item">
+                        <span>Cerveza Heineken 0.0</span>
+                        <small>$60</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Vino Blanco 0.0</span>
+                        <small>$150</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids Corner -->
+            <div class="menu-card">
+                <div class="menu-card-img" style="background-image: url('/static/images/menu/kids_corner.jpg');"></div>
+                <div class="menu-card-body">
+                    <h3><span class="emoji-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></span> Kids Corner</h3>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: -1rem; margin-bottom: 1rem; font-weight: bold;">Para los pequeños</p>
+                    <div class="menu-item">
+                        <span>Mini Molletes con queso</span>
+                        <small>$140</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Huevo con jamón</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Y frijoles.</p>
+                        </div>
+                        <small>$120</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Osito Chispa Hot Cakes</span>
+                        <small>$120</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Nuggets</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">6 piezas con pasta o papas fritas.</p>
+                        </div>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <span>Pasta con mantequilla</span>
+                        <small>$100</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Milanesita de Pollo</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Con pasta.</p>
+                        </div>
+                        <small>$150</small>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <span>Mini Sincronizadas</span>
+                            <p style="font-size: 0.75rem; color: #777; margin: 0.1rem 0 0 0;">Jamón y queso.</p>
+                        </div>
+                        <small>$120</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería de Especialidades (Nuevas fotos de Chispa) -->
+        <section style="margin: 4.5rem 0 2rem 0;">
+            <h2 class="section-title text-center" style="margin-bottom: 2rem;">Experiencia en Nuestra Terraza y Cafetería</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                    <img src="/static/images/drive/fff.jpg" alt="Desayuno y Trabajo en Chispa" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                    <img src="/static/images/drive/f.jpg" alt="Toast Gourmet de Frutos Rojos" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                    <img src="/static/images/drive/area_juegos.jpg" alt="Hamburguesa Artesanal Chispa" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                </div>
+                <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.07);">
+                    <img src="/static/images/drive/ffff.jpg" alt="Terraza Familiar Chispa" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: var(--mustard-bg); padding: 3rem 0; color: white; margin-top: auto;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left;">
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Chispa Experience</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Av. Ejército Nacional Mexicano 963-Piso 2, Polanco, Col. Irrigación, Miguel Hidalgo, 11550 Ciudad de México, CDMX</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Contacto</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg> 55 8798 9223</p>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Abierto hoy hasta las 7:00 p.m.</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Síguenos</h4>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="https://www.instagram.com/chispaexperience/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://www.tiktok.com/@chispa.experience" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/chispa-experience-846a13399/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.94 0-1.7.76-1.7 1.7s.76 1.7 1.7 1.7 1.7-.76 1.7-1.7-.76-1.7-1.7-1.7z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem;">
+            &copy; 2026 Chispa Experience. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Chispa Experience</title>
+    <link rel="stylesheet" href="/static/styles.css?v=17">
+    <style>
+        .contact-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/images/galeria/img_8547.webp') center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .contact-hero h1 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+        .contact-info-card {
+            background: var(--mustard-bg);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .contact-info-item i {
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+        .contact-info-item h4 {
+            font-family: var(--font-title);
+            margin-bottom: 0.2rem;
+            font-size: 1.2rem;
+        }
+        .contact-info-item p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body style="background-color: var(--light-bg);">
+    <header>
+        <div class="container header-inner">
+            <div class="header-left">
+                <a href="/checkout.html">MEMBRESÍA / CO-WORKING</a>
+                <a href="/fiestas.html">PARTY CENTER</a>
+            </div>
+            <a href="/" class="logo">
+                <img src="/static/logo.jpg" alt="Chispa Logo" style="height: 120px; mix-blend-mode: multiply;">
+            </a>
+            <div class="header-right">
+                <a href="/contacto.html">CONTACTO</a>
+                <a href="/cafeteria.html">CAFETERÍA</a>
+                <a href="#" aria-label="Mi Cuenta" style="display:inline-flex;align-items:center;color:var(--dark-color);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/525587989223" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg>
+    </a>
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Estamos aquí para ti</h1>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">¿Tienes dudas sobre nuestros servicios, membresías o quieres agendar un recorrido? Escríbenos y te responderemos en breve.</p>
+        </div>
+    </section>
+
+    <main class="container mb-2">
+        <div class="contact-grid">
+            
+            <!-- Info Card -->
+            <div class="contact-info-card">
+                <h3 style="font-family: var(--font-title); font-size: 1.8rem; margin-bottom: 2rem;">Información de Contacto</h3>
+                
+                <div class="contact-info-item">
+                    <span class="emoji-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+                    <div>
+                        <h4>Visítanos</h4>
+                        <p>Av. Ejército Nacional Mexicano 963-Piso 2, Polanco, Col. Irrigación, Miguel Hidalgo, 11550 Ciudad de México, CDMX</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <span class="emoji-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></span>
+                    <div>
+                        <h4>Llámanos</h4>
+                        <p>55 8798 9223<br>Atención rápida por WhatsApp</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <span class="emoji-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+                    <div>
+                        <h4>Escríbenos</h4>
+                        <p>info@chispaexperience.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <span class="emoji-badge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+                    <div>
+                        <h4>Horarios</h4>
+                        <p>Lunes a Sábado: 9:00 am a 7:00 pm<br>Domingos: Abierto para fiestas previa reservación</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="form-container" style="margin: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <h2 style="font-family: var(--font-title); color: var(--secondary-color); font-size: 1.8rem; margin-bottom: 0.5rem;">Envíanos un Mensaje</h2>
+                <p style="color: #666; font-size: 0.95rem; margin-bottom: 2rem;">Completa el formulario y un asesor se pondrá en contacto contigo.</p>
+                
+                <form id="contactForm" onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.'); this.reset();">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Nombre Completo</label>
+                        <input type="text" required placeholder="Ej. Ana García" style="padding: 1rem; border-radius: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Correo Electrónico</label>
+                        <input type="email" required placeholder="tu@correo.com" style="padding: 1rem; border-radius: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label>¿En qué podemos ayudarte?</label>
+                        <textarea style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); outline: none; min-height: 120px; font-size: 1rem; resize: vertical;" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-100" style="padding: 1.2rem; font-size: 1.1rem;">Enviar Mensaje</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="background-color: var(--mustard-bg); padding: 3rem 0; color: white; margin-top: auto;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left;">
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Chispa Experience</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Av. Ejército Nacional Mexicano 963-Piso 2, Polanco, Col. Irrigación, Miguel Hidalgo, 11550 Ciudad de México, CDMX</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Contacto</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.396-10.416c-4.411 0-8 3.589-8 8 0 1.408.365 2.766 1.056 3.965l-1.121 4.099 4.207-1.103c1.155.63 2.463.969 3.858.969 4.411 0 8-3.589 8-8s-3.589-7.93-8-7.93z"/></svg> 55 8798 9223</p>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Abierto hoy hasta las 7:00 p.m.</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem; font-family: var(--font-title); font-size: 1.2rem;">Síguenos</h4>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="https://www.instagram.com/chispaexperience/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://www.tiktok.com/@chispa.experience" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/chispa-experience-846a13399/" target="_blank" style="color: white; text-decoration: none; transition: transform 0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.94 0-1.7.76-1.7 1.7s.76 1.7 1.7 1.7 1.7-.76 1.7-1.7-.76-1.7-1.7-1.7z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem;">
+            &copy; 2026 Chispa Experience. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

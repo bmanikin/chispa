@@ -6,3 +6,4 @@ Horizontales
 __pycache__
 *.pyc
 *.log
+Procfile
