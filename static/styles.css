@@ -191,6 +191,40 @@ header {
   gap: 3rem;
 }
 
+/* Hero New Grid Classes */
+.hero-inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: 3.4rem;
+  color: var(--primary-color);
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 500;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--dark-color);
+  font-weight: 500;
+  margin-top: 1rem;
+  max-width: 90%;
+}
+
 .hero-text {
   flex: 1;
 }
@@ -1829,26 +1863,53 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-  .header-inner { flex-wrap: wrap; }
-  .header-left { order: 3; width: 100%; justify-content: center; padding-top: 1rem; border-top: 1px solid var(--border-color); margin-top: 0.8rem; }
-  .header-right { order: 2; gap: 1rem; }
-  .logo { order: 1; }
-  .mobile-nav-toggle { display: block; order: 2; }
+  /* Header Fix */
+  .header-inner { flex-wrap: wrap; justify-content: center; padding: 0.5rem 0; }
+  .logo { order: 1; margin: 0 auto; display: block; text-align: center; }
   
+  .header-right { 
+    order: 2; 
+    width: 100%; 
+    justify-content: center; 
+    gap: 1.5rem !important; 
+    margin-top: 1rem;
+  }
+  
+  .header-left { 
+    order: 3; 
+    width: 100%; 
+    justify-content: center; 
+    gap: 1.5rem !important; 
+    padding-top: 0.8rem; 
+    border-top: 1px solid var(--border-color); 
+    margin-top: 0.8rem; 
+  }
+  
+  .header-left a, .header-right a { font-size: 0.75rem; }
+  
+  .mobile-nav-toggle { display: none; }
+  
+  /* Hero Fixes */
   .hero {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+  }
+  .hero-inner-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
   .hero-inner {
     flex-direction: column;
     text-align: center;
   }
+  .hero-title { font-size: 2.3rem !important; }
+  .hero-subtitle { font-size: 1.05rem !important; max-width: 100% !important; margin-top: 0.5rem !important; }
   .hero-text h1 { font-size: 2.3rem; }
   .hero-gallery-container {
     height: 320px;
   }
   .gallery-wrapper {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
   .three-cols {
     grid-template-columns: 1fr;
