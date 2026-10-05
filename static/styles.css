@@ -2296,14 +2296,13 @@ footer a:hover {
    DESKTOP NAV & ACTIVE STATES
    ========================================================================== */
 .desktop-nav {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
 .logo {
-    justify-self: center;
     z-index: 10;
 }
 
@@ -2316,25 +2315,17 @@ footer a:hover {
     transform: scale(1.05);
 }
 
-.header-left {
+.header-links {
     display: flex;
     gap: 2.5rem;
-    justify-content: flex-end;
-    padding-right: 2.5rem;
+    align-items: center;
 }
 
-.header-right {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: flex-start;
-    padding-left: 2.5rem;
-}
-
-.header-left a, .header-right a {
+.header-links a {
     white-space: nowrap;
 }
 
-.header-left .nav-link, .header-right .nav-link {
+.header-links .nav-link {
     text-transform: uppercase;
     font-weight: 600;
     font-size: 0.82rem;
@@ -2346,7 +2337,7 @@ footer a:hover {
     transition: color 0.3s ease;
 }
 
-.header-left .nav-link::after, .header-right .nav-link::after {
+.header-links .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -2358,16 +2349,16 @@ footer a:hover {
     transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.header-left .nav-link:hover, .header-right .nav-link:hover {
+.header-links .nav-link:hover {
     color: var(--primary-color);
 }
 
-.header-left .nav-link:hover, .header-right .nav-link:hover::after,
-.header-left .nav-link.active, .header-right .nav-link.active::after {
+.header-links .nav-link:hover::after,
+.header-links .nav-link.active::after {
     width: 100%;
 }
 
-.header-left .nav-link.active, .header-right .nav-link.active {
+.header-links .nav-link.active {
     color: var(--primary-color);
 }
 
