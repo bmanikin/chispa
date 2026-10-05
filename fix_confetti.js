@@ -1,0 +1,7 @@
+﻿const fs = require('fs');
+let css = fs.readFileSync('static/styles.css', 'utf8');
+
+const confettiSvg = `url("data:image/svg+xml,%3Csvg width='240' height='240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.1'%3E%3Ccircle cx='30' cy='40' r='5' fill='%235B8FA8'/%3E%3Ccircle cx='140' cy='180' r='4' fill='%23E83D7C'/%3E%3Ccircle cx='200' cy='50' r='6' fill='%23D4A843'/%3E%3Ccircle cx='70' cy='210' r='5' fill='%23CCD838'/%3E%3Crect x='100' y='30' width='16' height='6' rx='3' fill='%23E83D7C' transform='rotate(45 108 33)'/%3E%3Crect x='180' y='130' width='14' height='6' rx='3' fill='%235B8FA8' transform='rotate(-30 187 133)'/%3E%3Crect x='40' y='120' width='18' height='6' rx='3' fill='%23D4A843' transform='rotate(15 49 123)'/%3E%3Crect x='120' y='210' width='16' height='6' rx='3' fill='%235B8FA8' transform='rotate(-60 128 213)'/%3E%3Crect x='210' y='210' width='12' height='5' rx='2.5' fill='%23CCD838' transform='rotate(20 216 212)'/%3E%3Crect x='60' y='70' width='14' height='6' rx='3' fill='%23E83D7C' transform='rotate(-15 67 73)'/%3E%3Crect x='20' y='170' width='16' height='6' rx='3' fill='%23CCD838' transform='rotate(70 28 173)'/%3E%3Ccircle cx='120' cy='100' r='3' fill='%23D4A843'/%3E%3Ccircle cx='50' cy='180' r='2' fill='%235B8FA8'/%3E%3Ccircle cx='220' cy='120' r='3' fill='%23E83D7C'/%3E%3C/g%3E%3C/svg%3E")`;
+
+css = css.replace(/background-image: url\("data:image\/svg\+xml.*?"\);/, `background-image: ${confettiSvg};`);
+fs.writeFileSync('static/styles.css', css, 'utf8');
