@@ -327,11 +327,55 @@
 
     <script src="/static/app.js"></script>
     <script>
+        const PRICES_MATRIX = {
+            "Desayuno": {
+                "Lunes a Jueves": {
+                    40: {"HAPPY": 11900, "FUN": 14900, "CELEBRATION": 18900},
+                    50: {"HAPPY": 13400, "FUN": 16400, "CELEBRATION": 21900},
+                    75: {"HAPPY": 16900, "FUN": 21400, "CELEBRATION": 26400},
+                    85: {"HAPPY": 18400, "FUN": 22900, "CELEBRATION": 27900},
+                },
+                "Viernes a Domingo": {
+                    40: {"HAPPY": 14900, "FUN": 18400, "CELEBRATION": 21400},
+                    50: {"HAPPY": 15900, "FUN": 20400, "CELEBRATION": 23900},
+                    75: {"HAPPY": 20400, "FUN": 25900, "CELEBRATION": 29900},
+                    85: {"HAPPY": 22400, "FUN": 27900, "CELEBRATION": 32400},
+                }
+            },
+            "Comida": {
+                "Lunes a Jueves": {
+                    40: {"HAPPY": 12900, "FUN": 16900, "CELEBRATION": 20400},
+                    50: {"HAPPY": 14400, "FUN": 18400, "CELEBRATION": 22900},
+                    75: {"HAPPY": 18400, "FUN": 23400, "CELEBRATION": 27900},
+                    85: {"HAPPY": 20400, "FUN": 25400, "CELEBRATION": 29900},
+                },
+                "Viernes a Domingo": {
+                    40: {"HAPPY": 16900, "FUN": 20900, "CELEBRATION": 23900},
+                    50: {"HAPPY": 18900, "FUN": 23400, "CELEBRATION": 26400},
+                    75: {"HAPPY": 23400, "FUN": 28900, "CELEBRATION": 33900},
+                    85: {"HAPPY": 24900, "FUN": 30900, "CELEBRATION": 36900},
+                }
+            }
+        };
+
         async function calculate() {
             const paquete = document.getElementById('paquete').value;
             const horario = document.getElementById('horario').value;
             const dia = document.getElementById('dia').value;
             const capacidad = document.getElementById('capacidad').value;
+            
+            // 1. Actualizar textos de los options del select de capacidad para mostrar precios
+            const capacidadSelect = document.getElementById('capacidad');
+            Array.from(capacidadSelect.options).forEach(opt => {
+                const cap = parseInt(opt.value);
+                const precioBase = PRICES_MATRIX[horario]?.[dia]?.[cap]?.[paquete];
+                if (precioBase) {
+                    const formattedPrice = new Intl.NumberFormat('es-MX').format(precioBase);
+                    opt.text = `${cap} Invitados ($${formattedPrice})`;
+                }
+            });
+
+            // 2. Calcular total para el panel inferior
             const checkboxes = document.querySelectorAll('.addon-cb:checked');
             const adicionales = Array.from(checkboxes).map(cb => cb.value);
             
@@ -351,6 +395,9 @@
                 console.error(e);
             }
         }
+        
+        // Llamar a calculate al cargar la página para inicializar textos
+        document.addEventListener('DOMContentLoaded', calculate);
 
         function agendarFiestaWhatsApp() {
             const paqueteSelect = document.getElementById('paquete');
