@@ -661,7 +661,14 @@
                 </div>
                 <div class="service-card">
                     <h4>Cafetería</h4>
-                    <img src="/static/images/cafe_portada.jpg" alt="Cafetería">
+                    <div id="cafeFadeSlider" style="position: relative; width: 100%; height: 210px; margin-bottom: 1.5rem; border-radius: 14px; overflow: hidden; background: #000;">
+                        <img class="cafe-fade-slide" src="/static/images/cafe_portada.jpg" alt="Cafetería" style="position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out; opacity: 1; margin-bottom: 0; border-radius: 0;">
+                        <img class="cafe-fade-slide" src="/static/images/cafeteria_sangria.jpg" alt="Sangría en Cafetería" style="position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out; opacity: 0; margin-bottom: 0; border-radius: 0;">
+                        <div style="position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 8px; z-index: 10;">
+                            <div class="cafe-fade-dot active" data-index="0" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.9; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
+                            <div class="cafe-fade-dot" data-index="1" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.4; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
+                        </div>
+                    </div>
                     <ul>
                         <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg></span> Bebidas de la casa y vinos</li>
                         <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></span> Snacks saludables para peques</li>
@@ -1168,6 +1175,60 @@
                 }, {passive: true});
                 
                 partySlider.addEventListener('touchend', e => {
+                    let endX = e.changedTouches[0].clientX;
+                    let diff = startX - endX;
+                    if (diff > 40) {
+                        showSlide((currentIndex + 1) % slides.length);
+                    } else if (diff < -40) {
+                        showSlide((currentIndex - 1 + slides.length) % slides.length);
+                    }
+                    startAutoPlay();
+                }, {passive: true});
+
+                startAutoPlay();
+            }
+            
+            // Cafeteria Slider
+            const cafeSlider = document.getElementById('cafeFadeSlider');
+            if(cafeSlider) {
+                const slides = cafeSlider.querySelectorAll('.cafe-fade-slide');
+                const dots = cafeSlider.querySelectorAll('.cafe-fade-dot');
+                let currentIndex = 0;
+                let fadeInterval;
+
+                function showSlide(index) {
+                    slides[currentIndex].style.opacity = 0;
+                    dots[currentIndex].style.opacity = 0.4;
+                    currentIndex = index;
+                    slides[currentIndex].style.opacity = 1;
+                    dots[currentIndex].style.opacity = 0.9;
+                }
+
+                function nextSlide() {
+                    let nextIndex = (currentIndex + 1) % slides.length;
+                    showSlide(nextIndex);
+                }
+
+                function startAutoPlay() {
+                    clearInterval(fadeInterval);
+                    fadeInterval = setInterval(nextSlide, 5000); // slightly different timing
+                }
+
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.getAttribute('data-index'));
+                        showSlide(index);
+                        startAutoPlay();
+                    });
+                });
+
+                let startX = 0;
+                cafeSlider.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                    clearInterval(fadeInterval);
+                }, {passive: true});
+                
+                cafeSlider.addEventListener('touchend', e => {
                     let endX = e.changedTouches[0].clientX;
                     let diff = startX - endX;
                     if (diff > 40) {
