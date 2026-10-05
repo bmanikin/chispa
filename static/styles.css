@@ -2286,7 +2286,7 @@ footer a:hover {
         grid-template-columns: 1fr !important;
     }
     
-    .benefits-grid, .menu-grid, .gallery-grid-6, .plans-grid-2, .plans-grid-3 {
+    .benefits-grid, .menu-grid, .plans-grid-2, .plans-grid-3 {
         grid-template-columns: 1fr !important;
         gap: 1.2rem !important; /* Slightly tighter gap for vertical list */
     }
@@ -2371,4 +2371,18 @@ footer a:hover {
 .mobile-menu-links a.active {
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid-6 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+    }
+    .gallery-grid-6 img {
+        height: 180px !important;
+        border-radius: 12px;
+    }
+    .gallery-grid-6 > div {
+        border-radius: 12px !important;
+    }
 }
