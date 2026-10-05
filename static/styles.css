@@ -2386,3 +2386,12 @@ footer a:hover {
         border-radius: 12px !important;
     }
 }
+
+.hero-socials a {
+    color: var(--dark-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.hero-socials a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
