@@ -10,7 +10,7 @@
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
-    <link rel="stylesheet" href="/static/styles.css?v=17">
+    <link rel="stylesheet" href="/static/styles.css?v=18">
 </head>
 <body>
     <header>
@@ -625,7 +625,10 @@
             <div class="three-cols">
                 <div class="service-card">
                     <h4>Coworking + Ludoteca</h4>
-                    <img src="/static/images/coworking_portada.jpg" alt="Coworking">
+                    <div style="position: relative; width: 100%; height: 210px; margin-bottom: 1.5rem; border-radius: 14px; overflow: hidden;">
+                        <img src="/static/images/coworking_portada.jpg" alt="Coworking" style="position: absolute; top:0; left:0; margin-bottom:0; animation: crossfade1 10s infinite; width: 100%; height: 100%; object-fit: cover;">
+                        <img src="/static/images/ludoteca_portada.jpg" alt="Ludoteca" style="position: absolute; top:0; left:0; margin-bottom:0; animation: crossfade2 10s infinite; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                     <ul>
                         <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg></span> Wifi de alta velocidad</li>
                         <li><span class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span> Nanitas capacitadas</li>

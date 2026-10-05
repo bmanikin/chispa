@@ -2146,3 +2146,6 @@ footer a:hover {
   color: var(--secondary-color);
 }
 
+
+@keyframes crossfade1 { 0%, 45% { opacity: 1; } 50%, 95% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes crossfade2 { 0%, 45% { opacity: 0; } 50%, 95% { opacity: 1; } 100% { opacity: 0; } }
