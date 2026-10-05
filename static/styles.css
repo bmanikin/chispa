@@ -1124,31 +1124,27 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  overflow: hidden; /* Added to clip the continuous track */
 }
 
 .testimonials-track {
-  display: flex;
+  display: inline-flex;
   gap: 1.8rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   padding: 1rem 0.5rem 1.8rem 0.5rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: var(--chispa-gold) rgba(91, 143, 168, 0.08);
+  will-change: transform;
+  animation: scrollTestimonials 50s linear infinite;
+}
+.testimonials-track:hover {
+  animation-play-state: paused;
+}
+@keyframes scrollTestimonials {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.9rem)); }
 }
 
-.testimonials-track::-webkit-scrollbar {
-  height: 5px;
-}
-.testimonials-track::-webkit-scrollbar-track {
-  background: rgba(91, 143, 168, 0.08);
-  border-radius: 10px;
-}
-.testimonials-track::-webkit-scrollbar-thumb {
-  background: var(--chispa-gold);
-  border-radius: 10px;
-}
+
+
+
 
 .testimonial-card {
   flex: 0 0 350px;
@@ -1213,6 +1209,8 @@ section {
 }
 
 .testimonial-nav-btn {
+  display: none !important; /* Hidden for continuous marquee */
+  
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
