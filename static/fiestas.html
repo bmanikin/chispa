@@ -182,12 +182,40 @@
                         
                         <form id="quoteForm">
                             <div class="form-group" style="margin-bottom: 1.1rem;">
-                                <label style="font-size: 0.92rem; color: var(--primary-color); margin-bottom: 0.4rem; font-weight: 700;">1. Selecciona tu aforo</label>
-                                <select id="capacidad" onchange="calculate()" style="padding: 0.65rem; font-weight: 600; font-size: 0.95rem; border: 1px solid #ddd; border-radius: 8px; width: 100%;">
-                                    <option value="25">Hasta 25 Personas ($15,000 base)</option>
-                                    <option value="50">Hasta 50 Personas ($25,000 base)</option>
-                                    <option value="85">Hasta 85 Personas ($35,000 base)</option>
-                                </select>
+                                <label style="font-size: 0.92rem; color: var(--primary-color); margin-bottom: 0.8rem; font-weight: 700; display: block;">1. Arma tu paquete</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.1rem;">
+                                    <div class="form-group">
+                                        <label style="font-size: 0.85rem; color: #555; margin-bottom: 0.2rem; font-weight: 600; display: block;">Paquete</label>
+                                        <select id="paquete" onchange="calculate()" style="padding: 0.5rem; font-weight: 600; font-size: 0.9rem; border: 1px solid #ddd; border-radius: 8px; width: 100%;">
+                                            <option value="HAPPY">HAPPY</option>
+                                            <option value="FUN">FUN</option>
+                                            <option value="CELEBRATION">CELEBRATION</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.85rem; color: #555; margin-bottom: 0.2rem; font-weight: 600; display: block;">Horario</label>
+                                        <select id="horario" onchange="calculate()" style="padding: 0.5rem; font-weight: 600; font-size: 0.9rem; border: 1px solid #ddd; border-radius: 8px; width: 100%;">
+                                            <option value="Desayuno">Desayuno (9AM-1PM)</option>
+                                            <option value="Comida">Comida (3PM-7PM)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.85rem; color: #555; margin-bottom: 0.2rem; font-weight: 600; display: block;">Día</label>
+                                        <select id="dia" onchange="calculate()" style="padding: 0.5rem; font-weight: 600; font-size: 0.9rem; border: 1px solid #ddd; border-radius: 8px; width: 100%;">
+                                            <option value="Lunes a Jueves">Lunes a Jueves</option>
+                                            <option value="Viernes a Domingo">Viernes a Domingo</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size: 0.85rem; color: #555; margin-bottom: 0.2rem; font-weight: 600; display: block;">Aforo</label>
+                                        <select id="capacidad" onchange="calculate()" style="padding: 0.5rem; font-weight: 600; font-size: 0.9rem; border: 1px solid #ddd; border-radius: 8px; width: 100%;">
+                                            <option value="40">40 Invitados</option>
+                                            <option value="50">50 Invitados</option>
+                                            <option value="75">75 Invitados</option>
+                                            <option value="85">85 Invitados</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="form-group mt-1" style="margin-bottom: 1.1rem;">
@@ -214,7 +242,8 @@
                             
                             <div class="mt-1 text-center" style="background: var(--secondary-color); color: white; padding: 0.9rem; border-radius: 10px; margin-top: 1.2rem;">
                                 <h3 style="font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.05em;">Inversión Estimada</h3>
-                                <div id="totalPrice" style="font-family: var(--font-title); font-size: 2.2rem; line-height: 1;">$15,000<small style="font-size: 0.85rem; font-family: var(--font-body); margin-left: 4px;">MXN</small></div>
+                                <div id="totalPrice" style="font-family: var(--font-title); font-size: 2.2rem; line-height: 1;">$11,900<small style="font-size: 0.85rem; font-family: var(--font-body); margin-left: 4px;">MXN</small></div>
+                                <p style="font-size: 0.8rem; margin-top: 0.4rem; font-family: var(--font-body); font-weight: 600; opacity: 0.9;">Persona extra: $700 MXN</p>
                             </div>
                             
                             <button type="button" class="btn-primary w-100 mt-1" style="font-size: 1rem; padding: 0.85rem; margin-top: 1rem; border-radius: 8px; font-weight: 700;" onclick="agendarFiestaWhatsApp()">Agendar Fecha por WhatsApp</button>
@@ -299,12 +328,18 @@
     <script src="/static/app.js"></script>
     <script>
         async function calculate() {
+            const paquete = document.getElementById('paquete').value;
+            const horario = document.getElementById('horario').value;
+            const dia = document.getElementById('dia').value;
             const capacidad = document.getElementById('capacidad').value;
             const checkboxes = document.querySelectorAll('.addon-cb:checked');
             const adicionales = Array.from(checkboxes).map(cb => cb.value);
             
             try {
                 const res = await apiCall('/events/quote', 'POST', {
+                    paquete: paquete,
+                    horario: horario,
+                    dia: dia,
                     capacidad: parseInt(capacidad),
                     adicionales: adicionales
                 });
@@ -318,6 +353,15 @@
         }
 
         function agendarFiestaWhatsApp() {
+            const paqueteSelect = document.getElementById('paquete');
+            const paquete = paqueteSelect.options[paqueteSelect.selectedIndex].text;
+            
+            const horarioSelect = document.getElementById('horario');
+            const horario = horarioSelect.options[horarioSelect.selectedIndex].text;
+            
+            const diaSelect = document.getElementById('dia');
+            const dia = diaSelect.options[diaSelect.selectedIndex].text;
+
             const capacidadSelect = document.getElementById('capacidad');
             const aforo = capacidadSelect.options[capacidadSelect.selectedIndex].text;
             
@@ -331,11 +375,14 @@
             const totalText = document.getElementById('totalPrice').innerText;
             
             let message = `¡Hola! Me gustaría agendar una fecha para mi fiesta en *Party Center*.\n\n`;
+            message += `*Paquete:* ${paquete}\n`;
+            message += `*Horario:* ${horario}\n`;
+            message += `*Día:* ${dia}\n`;
             message += `*Aforo:* ${aforo}\n`;
             if (extras.length > 0) {
                 message += `*Extras:* ${extras.join(', ')}\n`;
             }
-            message += `*Inversión Estimada:* ${totalText}\n\n`;
+            message += `*Inversión Estimada:* ${totalText} (Persona extra: $700 MXN)\n\n`;
             message += `¿Qué fechas tienen disponibles?`;
             
             const phoneNumber = "525587989223";
