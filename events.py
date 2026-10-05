@@ -16,6 +16,7 @@ PRICES_ADICIONALES = {
     "show_tematico": 5000,
     "decoracion": 3000,
     "carrito_monchis": 2500,
+    "munchie_cart": 2500,
     "pastel_premium": 1500
 }
 
