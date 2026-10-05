@@ -2179,3 +2179,97 @@ footer a:hover {
     padding: 0 1rem;
     width: 100%;
 }
+
+/* ==========================================================================
+   MOBILE IMPROVEMENTS
+   ========================================================================== */
+.mobile-nav-container {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .desktop-nav {
+        display: none !important;
+    }
+    
+    .header-inner {
+        padding: 0 !important; /* Reset padding for full width scroll */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mobile-nav-container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* Break out of container to full viewport width */
+        margin-right: calc(-50vw + 50%);
+        background: #fff;
+    }
+    
+    .mobile-logo-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 1rem;
+    }
+    
+    .mobile-nav-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 1.5rem;
+        padding: 0.8rem 1.5rem 1rem 1.5rem;
+        justify-content: flex-start; /* Let items naturally align left to scroll */
+        align-items: center;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Subtle shadow for the header */
+    }
+    
+    .mobile-nav-scroll::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for cleaner look */
+    }
+    
+    .mobile-nav-scroll a {
+        text-decoration: none;
+        color: var(--dark-color);
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        scroll-snap-align: start;
+        padding: 0.2rem 0; /* Larger touch target */
+    }
+}
+
+/* Mobile Horizontal Scroll Grids */
+@media (max-width: 768px) {
+    .mobile-scroll-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 1rem !important;
+        padding-bottom: 1.5rem !important; /* Space for scrollbar */
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        
+        /* Make it break out of the container on mobile to allow edge-to-edge scrolling */
+        width: 100vw;
+        margin-left: calc(-50vw + 50%) !important;
+        margin-right: calc(-50vw + 50%) !important;
+        padding-left: max(1rem, calc(50vw - 50%)); /* Keep first item aligned */
+        padding-right: max(1rem, calc(50vw - 50%));
+    }
+    
+    .mobile-scroll-grid > * {
+        min-width: 260px !important;
+        max-width: 300px !important; /* Prevent cards from getting too wide */
+        scroll-snap-align: center;
+        flex-shrink: 0;
+        height: auto; /* Let them grow */
+        /* If they were grid items, reset their margins just in case */
+        margin: 0 !important;
+    }
+}
