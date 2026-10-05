@@ -70,7 +70,9 @@ html {
 }
 
 body {
-  background: var(--light-bg);
+  background-color: var(--light-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.08'%3E%3Cpath d='M30 15 Q30 30 15 30 Q30 30 30 45 Q30 30 45 30 Q30 30 30 15 Z' fill='%235B8FA8'/%3E%3Cpath d='M110 50 Q110 58 102 58 Q110 58 110 66 Q110 58 118 58 Q110 58 110 50 Z' fill='%23E83D7C'/%3E%3Cpath d='M50 110 Q50 120 40 120 Q50 120 50 130 Q50 120 60 120 Q50 120 50 110 Z' fill='%23D4A843'/%3E%3Cpath d='M130 130 Q130 136 124 136 Q130 136 130 142 Q130 136 136 136 Q130 136 130 130 Z' fill='%23CCD838'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
   color: var(--dark-color);
   min-height: 100vh;
   display: flex;
@@ -321,7 +323,7 @@ header {
 
 .marquee-section {
   padding: 3.5rem 0 3.8rem;
-  background: var(--light-bg);
+  background: transparent;
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--border-color);
@@ -1115,9 +1117,7 @@ section {
    TESTIMONIALS SLIDER (Lineal, Soft, Star Reviews)
    ========================================================================== */
 
-.acerca-bg {
-  background-color: var(--light-bg);
-}
+.acerca-bg { /* transparent to show body pattern */ }
 
 .testimonials-wrapper {
   position: relative;
