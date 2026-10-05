@@ -2296,38 +2296,42 @@ footer a:hover {
    DESKTOP NAV & ACTIVE STATES
    ========================================================================== */
 .desktop-nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    position: relative;
     width: 100%;
 }
 
 .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-self: center;
     z-index: 10;
 }
 
 .logo-img {
     height: 70px;
     mix-blend-mode: multiply;
-    transition: height 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.logo:hover .logo-img {
+    transform: scale(1.05);
 }
 
 .header-left {
     display: flex;
-    gap: 2.4rem;
-    flex: 1;
-    justify-content: flex-start;
+    gap: 2.5rem;
+    justify-content: flex-end;
+    padding-right: 2.5rem;
 }
 
 .header-right {
     display: flex;
-    gap: 2.4rem;
-    flex: 1;
-    justify-content: flex-end;
+    gap: 2.5rem;
+    justify-content: flex-start;
+    padding-left: 2.5rem;
+}
+
+.header-left a, .header-right a {
+    white-space: nowrap;
 }
 
 .header-left .nav-link, .header-right .nav-link {
