@@ -625,15 +625,12 @@
             <div class="three-cols">
                 <div class="service-card">
                     <h4>Coworking + Ludoteca</h4>
-                    <style>#coworkingSlider::-webkit-scrollbar { display: none; }</style>
-                    <div style="position: relative; margin-bottom: 1.5rem;">
-                        <div id="coworkingSlider" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; width: 100%; height: 210px; border-radius: 14px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
-                            <img src="/static/images/coworking_portada.jpg" alt="Coworking" style="scroll-snap-align: start; width: 100%; height: 100%; flex-shrink: 0; object-fit: cover; margin-bottom: 0; border-radius: 0;">
-                            <img src="/static/images/ludoteca_portada.jpg" alt="Ludoteca" style="scroll-snap-align: start; width: 100%; height: 100%; flex-shrink: 0; object-fit: cover; margin-bottom: 0; border-radius: 0;">
-                        </div>
-                        <div style="position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 8px;">
-                            <div class="slider-dot active" data-index="0" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.9; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
-                            <div class="slider-dot" data-index="1" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.4; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
+                    <div id="coworkingFadeSlider" style="position: relative; width: 100%; height: 210px; margin-bottom: 1.5rem; border-radius: 14px; overflow: hidden; background: #000;">
+                        <img class="fade-slide" src="/static/images/coworking_portada.jpg" alt="Coworking" style="position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out; opacity: 1; margin-bottom: 0; border-radius: 0;">
+                        <img class="fade-slide" src="/static/images/ludoteca_portada.jpg" alt="Ludoteca" style="position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out; opacity: 0; margin-bottom: 0; border-radius: 0;">
+                        <div style="position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center; gap: 8px; z-index: 10;">
+                            <div class="fade-dot active" data-index="0" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.9; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
+                            <div class="fade-dot" data-index="1" style="width: 8px; height: 8px; border-radius: 50%; background: white; opacity: 0.4; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: opacity 0.3s;"></div>
                         </div>
                     </div>
                     <ul>
@@ -1094,49 +1091,60 @@
     <script src="/static/app.js?v=17"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const slider = document.getElementById('coworkingSlider');
-            if(slider) {
-                const dots = slider.parentElement.querySelectorAll('.slider-dot');
-                let isScrollActive = true;
-                
-                function autoScroll() {
-                    if(!isScrollActive) return;
-                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
-                        slider.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        slider.scrollTo({ left: slider.scrollLeft + slider.clientWidth, behavior: 'smooth' });
-                    }
+            const fadeSlider = document.getElementById('coworkingFadeSlider');
+            if(fadeSlider) {
+                const slides = fadeSlider.querySelectorAll('.fade-slide');
+                const dots = fadeSlider.querySelectorAll('.fade-dot');
+                let currentIndex = 0;
+                let fadeInterval;
+
+                function showSlide(index) {
+                    slides[currentIndex].style.opacity = 0;
+                    dots[currentIndex].style.opacity = 0.4;
+                    
+                    currentIndex = index;
+                    
+                    slides[currentIndex].style.opacity = 1;
+                    dots[currentIndex].style.opacity = 0.9;
                 }
 
-                let scrollInterval = setInterval(autoScroll, 4000);
+                function nextSlide() {
+                    let nextIndex = (currentIndex + 1) % slides.length;
+                    showSlide(nextIndex);
+                }
 
-                // Update dots on scroll
-                slider.addEventListener('scroll', () => {
-                    const index = Math.round(slider.scrollLeft / slider.clientWidth);
-                    dots.forEach((dot, i) => {
-                        dot.style.opacity = i === index ? '0.9' : '0.4';
-                    });
-                }, {passive: true});
+                function startAutoPlay() {
+                    clearInterval(fadeInterval);
+                    fadeInterval = setInterval(nextSlide, 4000);
+                }
 
-                // Click dots to scroll
                 dots.forEach(dot => {
                     dot.addEventListener('click', () => {
-                        isScrollActive = false;
                         const index = parseInt(dot.getAttribute('data-index'));
-                        slider.scrollTo({ left: index * slider.clientWidth, behavior: 'smooth' });
-                        setTimeout(() => isScrollActive = true, 4000);
+                        showSlide(index);
+                        startAutoPlay(); // reset timer
                     });
                 });
 
-                // Pause on interaction
-                const pauseAutoScroll = () => { isScrollActive = false; };
-                const resumeAutoScroll = () => { setTimeout(() => isScrollActive = true, 4000); };
+                // Swipe support
+                let startX = 0;
+                fadeSlider.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                    clearInterval(fadeInterval);
+                }, {passive: true});
+                
+                fadeSlider.addEventListener('touchend', e => {
+                    let endX = e.changedTouches[0].clientX;
+                    let diff = startX - endX;
+                    if (diff > 40) {
+                        showSlide((currentIndex + 1) % slides.length);
+                    } else if (diff < -40) {
+                        showSlide((currentIndex - 1 + slides.length) % slides.length);
+                    }
+                    startAutoPlay();
+                }, {passive: true});
 
-                slider.addEventListener('touchstart', pauseAutoScroll, {passive: true});
-                slider.addEventListener('touchend', resumeAutoScroll, {passive: true});
-                slider.addEventListener('mousedown', pauseAutoScroll);
-                slider.addEventListener('mouseup', resumeAutoScroll);
-                slider.addEventListener('mouseleave', resumeAutoScroll);
+                startAutoPlay();
             }
         });
     </script>
