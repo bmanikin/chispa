@@ -2291,3 +2291,84 @@ footer a:hover {
         gap: 1.2rem !important; /* Slightly tighter gap for vertical list */
     }
 }
+
+/* ==========================================================================
+   DESKTOP NAV & ACTIVE STATES
+   ========================================================================== */
+.desktop-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.logo-img {
+    height: 70px;
+    mix-blend-mode: multiply;
+    transition: height 0.3s ease;
+}
+
+.header-left {
+    display: flex;
+    gap: 2.4rem;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.header-right {
+    display: flex;
+    gap: 2.4rem;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.header-left .nav-link, .header-right .nav-link {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.header-left .nav-link::after, .header-right .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.header-left .nav-link:hover, .header-right .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.header-left .nav-link:hover, .header-right .nav-link:hover::after,
+.header-left .nav-link.active, .header-right .nav-link.active::after {
+    width: 100%;
+}
+
+.header-left .nav-link.active, .header-right .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Make mobile menu links show active state too */
+.mobile-menu-links a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
