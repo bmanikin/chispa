@@ -103,7 +103,7 @@ header {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 0.85rem 0;
+  padding: 0.35rem 0;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -2308,7 +2308,7 @@ footer a:hover {
 }
 
 .logo-img {
-    height: 70px;
+    height: clamp(40px, 6vh, 60px);
     mix-blend-mode: multiply;
     transition: transform 0.3s ease;
 }
@@ -2330,11 +2330,11 @@ footer a:hover {
 .header-links .nav-link {
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
     color: var(--secondary-color);
     text-decoration: none;
     letter-spacing: 0.08em;
-    padding: 0.7rem 1.4rem;
+    padding: 0.45rem 1.1rem;
     border-radius: 30px;
     transition: all 0.3s ease;
     position: relative;
