@@ -1263,18 +1263,18 @@ section {
 }
 
 .faq-item {
-  background: #FFFFFF;
-  margin-bottom: 1.1rem;
-  border-radius: 16px;
-  border: var(--border-subtle);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
+    background: transparent;
+    border-bottom: 1px solid #ECECEC;
+    overflow: hidden;
+    transition: border-color 0.25s ease;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
 
-.faq-item:hover {
-  border-color: var(--primary-color);
-}
+.faq-item:hover .faq-question {
+    color: var(--secondary-color);
+  }
 
 .faq-question {
   width: 100%;
