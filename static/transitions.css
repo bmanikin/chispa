@@ -1,0 +1,26 @@
+﻿/* Page Transitions */
+body {
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+body.enter-fade { animation: enterFade 0.6s forwards; }
+@keyframes enterFade { from { opacity: 0; } to { opacity: 1; } }
+
+body.enter-slide-left { animation: enterSlideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes enterSlideLeft { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+
+body.enter-scale-up { animation: enterScaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes enterScaleUp { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+
+body.enter-slide-up { animation: enterSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes enterSlideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+body.enter-slide-down { animation: enterSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes enterSlideDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Exit states applied via JS */
+body.exit-fade { opacity: 0; }
+body.exit-slide-left { opacity: 0; transform: translateX(-40px); }
+body.exit-scale-up { opacity: 0; transform: scale(1.04); }
+body.exit-slide-up { opacity: 0; transform: translateY(-40px); }
+body.exit-slide-down { opacity: 0; transform: translateY(40px); }
