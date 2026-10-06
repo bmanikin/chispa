@@ -1,34 +1,13 @@
-﻿/* Page Transitions */
-body {
-    overflow-x: hidden;
-}
 
 /* 
-   We apply animations to the children of body EXCEPT the header.
-   This prevents the CSS transform from breaking the `position: sticky` of the header,
-   which causes severe layout jumps (choppiness).
+   Simple, elegant, zero-delay page entrance.
+   Removes the "choppy" sliding and artificial JS delay.
 */
-
-/* ENTRANCE */
-body.enter-fade > *:not(header) { animation: enterFade 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-body.enter-slide-left > *:not(header) { animation: enterSlideLeft 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-body.enter-scale-up > *:not(header) { animation: enterScaleUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-body.enter-slide-up > *:not(header) { animation: enterSlideUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-body.enter-slide-down > *:not(header) { animation: enterSlideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-
-@keyframes enterFade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes enterSlideLeft { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes enterScaleUp { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-@keyframes enterSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes enterSlideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
-/* EXIT */
-body[class*="exit-"] > *:not(header) {
-    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+body {
+    animation: elegantFadeIn 0.35s ease-out forwards;
 }
 
-body.exit-fade > *:not(header) { opacity: 0; }
-body.exit-slide-left > *:not(header) { opacity: 0; transform: translateX(-30px); }
-body.exit-scale-up > *:not(header) { opacity: 0; transform: scale(1.03); }
-body.exit-slide-up > *:not(header) { opacity: 0; transform: translateY(-30px); }
-body.exit-slide-down > *:not(header) { opacity: 0; transform: translateY(30px); }
+@keyframes elegantFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
