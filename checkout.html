@@ -297,7 +297,7 @@
                     <label>Edad del Niño(a)</label>
                     <input type="number" id="edad_nino" min="1" max="10" required>
                 </div>
-                <button type="button" class="btn-primary w-100" onclick="processRegistration()">Continuar al Pago</button>
+                <button type="button" class="btn-primary w-100" onclick="processRegistration()">Contactar por WhatsApp</button>
             </form>
         </div>
 
@@ -413,34 +413,42 @@
             document.getElementById('step2').style.display = 'block';
         }
 
-        async function processRegistration() {
+        
+        function processRegistration() {
             const edad = parseInt(document.getElementById('edad_nino').value);
             if (edad < 1 || edad > 10) {
                 alert('La ludoteca es solo para niños de 1 a 10 años.');
                 return;
             }
 
-            const data = {
-                nombre_adulto: document.getElementById('nombre_adulto').value,
-                email_adulto: document.getElementById('email_adulto').value,
-                telefono_emergencia: document.getElementById('telefono').value,
-                nombre_nino: document.getElementById('nombre_nino').value,
-                edad_nino: edad,
-                tipo_pase_activo: currentPlan
-            };
+            const nombre = document.getElementById('nombre_adulto').value;
+            const email = document.getElementById('email_adulto').value;
+            const tel = document.getElementById('telefono').value;
+            const nino = document.getElementById('nombre_nino').value;
 
-            try {
-                const res = await apiCall('/crm/register', 'POST', data);
-                registeredUserId = res.id_adulto;
-                localStorage.setItem('chispa_user_id', registeredUserId);
-                
-                document.getElementById('step2').style.display = 'none';
-                document.getElementById('planName').innerText = currentPlan.replace('_', ' ');
-                document.getElementById('planPrice').innerText = `$${currentPrice} MXN`;
-                document.getElementById('step3').style.display = 'block';
-            } catch (e) {
-                alert(e.message);
+            if (!nombre || !email || !tel || !nino || !edad) {
+                alert('Por favor completa todos los campos.');
+                return;
             }
+
+            const text = `Hola, me interesa el plan: ${currentPlan.replace(/_/g, ' ')} por $${currentPrice} MXN.
+Mis datos de registro son:
+- Adulto: ${nombre}
+- Correo: ${email}
+- Teléfono: ${tel}
+- Niño(a): ${nino}
+- Edad: ${edad} años`;
+
+            const waUrl = `https://wa.me/525587989223?text=${encodeURIComponent(text)}`;
+            const mailToUrl = `mailto:info@chispaexperience.com?subject=Registro - ${nombre}&body=${encodeURIComponent(text)}`;
+
+            // Enviar por correo a través del cliente local
+            window.location.href = mailToUrl;
+            
+            // Abrir WhatsApp en nueva pestaña
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 300);
         }
 
         function simulatePayment() {
