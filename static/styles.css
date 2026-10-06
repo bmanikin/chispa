@@ -2328,12 +2328,12 @@ footer a:hover {
 }
 
 .header-links .nav-link {
-    text-transform: uppercase;
+    font-family: var(--font-title);
+    text-transform: none;
     font-weight: 600;
-    font-size: clamp(0.7rem, 1vw, 0.8rem);
-    color: var(--secondary-color);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    color: #CA7A8B; /* Dusty rose color from user image */
     text-decoration: none;
-    letter-spacing: 0.08em;
     padding: 0.45rem 1.1rem;
     border-radius: 30px;
     transition: all 0.3s ease;
@@ -2342,13 +2342,13 @@ footer a:hover {
 }
 
 .header-links .nav-link:hover {
-    color: var(--primary-color);
-    background: rgba(86, 142, 166, 0.08);
+    color: #b36374;
+    background: rgba(202, 122, 139, 0.08);
 }
 
 .header-links .nav-link.active {
-    color: var(--primary-color);
-    background: rgba(86, 142, 166, 0.12);
+    color: #b36374;
+    background: rgba(202, 122, 139, 0.15);
     font-weight: 700;
 }
 
