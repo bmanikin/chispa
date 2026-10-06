@@ -2330,26 +2330,27 @@ footer a:hover {
 .header-links .nav-link {
     font-family: var(--font-title);
     text-transform: none;
-    font-weight: 600;
-    font-size: clamp(1rem, 1.2vw, 1.15rem);
-    color: #CA7A8B; /* Dusty rose color from user image */
+    font-weight: 400; /* Luxury means lighter weights */
+    font-size: clamp(0.9rem, 1vw, 1.05rem); /* Slightly smaller, more refined */
+    letter-spacing: 0.03em;
+    color: #A8878D; /* Very subtle, muted dusty taupe/rose */
     text-decoration: none;
-    padding: 0.45rem 1.1rem;
+    padding: 0.4rem 1.1rem;
     border-radius: 30px;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease; /* Slower, smoother transition */
     position: relative;
     overflow: hidden;
 }
 
 .header-links .nav-link:hover {
-    color: #b36374;
-    background: rgba(202, 122, 139, 0.08);
+    color: #8A686E; /* Slightly darker on hover for readability */
+    background: rgba(168, 135, 141, 0.05); /* Extremely subtle pill */
 }
 
 .header-links .nav-link.active {
-    color: #b36374;
-    background: rgba(202, 122, 139, 0.15);
-    font-weight: 700;
+    color: #8A686E;
+    background: rgba(168, 135, 141, 0.08); /* Very subtle active pill */
+    font-weight: 500; /* Just a tiny bit bolder, not 700 */
 }
 
 /* Make mobile menu links show active state too */
