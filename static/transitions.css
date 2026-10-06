@@ -1,26 +1,34 @@
 ﻿/* Page Transitions */
 body {
-    transition: opacity 0.45s ease, transform 0.45s ease;
+    overflow-x: hidden;
 }
 
-body.enter-fade { animation: enterFade 0.6s forwards; }
+/* 
+   We apply animations to the children of body EXCEPT the header.
+   This prevents the CSS transform from breaking the `position: sticky` of the header,
+   which causes severe layout jumps (choppiness).
+*/
+
+/* ENTRANCE */
+body.enter-fade > *:not(header) { animation: enterFade 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+body.enter-slide-left > *:not(header) { animation: enterSlideLeft 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+body.enter-scale-up > *:not(header) { animation: enterScaleUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+body.enter-slide-up > *:not(header) { animation: enterSlideUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+body.enter-slide-down > *:not(header) { animation: enterSlideDown 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
 @keyframes enterFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes enterSlideLeft { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes enterScaleUp { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes enterSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes enterSlideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-body.enter-slide-left { animation: enterSlideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-@keyframes enterSlideLeft { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+/* EXIT */
+body[class*="exit-"] > *:not(header) {
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-body.enter-scale-up { animation: enterScaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-@keyframes enterScaleUp { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
-
-body.enter-slide-up { animation: enterSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-@keyframes enterSlideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-body.enter-slide-down { animation: enterSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-@keyframes enterSlideDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Exit states applied via JS */
-body.exit-fade { opacity: 0; }
-body.exit-slide-left { opacity: 0; transform: translateX(-40px); }
-body.exit-scale-up { opacity: 0; transform: scale(1.04); }
-body.exit-slide-up { opacity: 0; transform: translateY(-40px); }
-body.exit-slide-down { opacity: 0; transform: translateY(40px); }
+body.exit-fade > *:not(header) { opacity: 0; }
+body.exit-slide-left > *:not(header) { opacity: 0; transform: translateX(-30px); }
+body.exit-scale-up > *:not(header) { opacity: 0; transform: scale(1.03); }
+body.exit-slide-up > *:not(header) { opacity: 0; transform: translateY(-30px); }
+body.exit-slide-down > *:not(header) { opacity: 0; transform: translateY(30px); }
